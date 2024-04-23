@@ -7,7 +7,7 @@ const StyledFooter = styled("div")(({theme}) => ({
     height: "49px",
     display: 'flex',
     backgroundColor: theme.palette.primary.light,
-    borderRadius: '25px',
+    borderRadius: '24px',
     justifyContent: 'space-between',
     alignItems: "center",
     padding: "8.5px 20px"

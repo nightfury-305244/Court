@@ -7,6 +7,10 @@ const StyledHeader = styled("div")(({theme}) => ({
   "div": {
     display: 'flex',
     justifyContent: 'space-between',
+    ".avatar": {
+      width: "32px",
+      height: "32px"
+    } 
   }
 }));
 
@@ -16,7 +20,7 @@ const Header = () => {
     <StyledHeader>
       <div>
         <img src='/src/assets/bell.svg' alt='notification' />
-        <img src='/src/assets/avatar.png' alt='notification' />
+        <img className='avatar' src='/src/assets/avatar.png' alt='notification' />
       </div>
     </StyledHeader>
   )
