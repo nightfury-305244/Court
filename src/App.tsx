@@ -8,6 +8,7 @@ import EditProfile from './pages/EditProfile'
 import NewGame from './pages/NewGame'
 import MyGame from './pages/MyGame'
 import NewMatch from './pages/NewMatch'
+import Landing from './pages/Landing'
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
       <Container maxWidth="sm" >
         <Router>
           <Routes>
+            <Route path="/" element={<Landing />} />
             <Route path='/login' element={<Login />}/>
-            <Route path='/' element={<Layout />}>
+            <Route element={<Layout />}>
               <Route path='/profile' element={<Profile />} />
               <Route path='/editprofile' element={<EditProfile />} />
               <Route path='/addnewgame' element={<NewGame />} />
