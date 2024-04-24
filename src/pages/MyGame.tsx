@@ -1,4 +1,5 @@
 import { Box, Button, Card, Chip, IconButton, InputBase, Paper, TextField, Typography, styled } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const Content = styled(Card)(({theme})=>({
   borderRadius: "8px",
@@ -7,6 +8,7 @@ const Content = styled(Card)(({theme})=>({
   flexDirection: "column",
   alignItems: "end",
   padding: "7px 8px 7px 8px",
+  marginTop: "15.5px",
   ".content": {
     display: "flex",
     flexDirection: "column",
@@ -29,28 +31,55 @@ const Content = styled(Card)(({theme})=>({
   }
 }))
 
+const GameTabStyle = styled(Box)(({theme})=> ({
+  color: theme.palette.info.light,
+  display: "flex",
+  flexDirection: "row",
+  p: {
+    flexGrow: 1,
+    textAlign: "center",
+    borderBottom: "1px solid"
+  },
+  ".first": {
+    marginRight: "8px",
+  },
+  ".second": {
+    color: theme.palette.primary.main,
+    marginLeft: "8px"
+  }
+}))
+
 type Props = {}
 
 const MyGame = (props: Props) => {
+
+  const navigate = useNavigate();
+
+  const handleNewGame = () => {
+    navigate("/addnewgame");
+  }
+
+  const handleNewMatch = () => {
+    navigate("/editornewmatch")
+  }
+
   return (
     <Box sx={{p: "10px 39px"}}>
-      <Box sx={{display: "flex"}}>
-        <TextField 
-          variant='standard' 
-          value={"یافتن بازی"} 
-          fullWidth sx={{marginRight: "15px"}}/>
-        <TextField 
-          variant='standard' 
-          value={"بازی های من"}
-          fullWidth />
+      <Box>
+        <GameTabStyle>
+          <Typography className='first'>یافتن بازی</Typography>
+          <Typography className='second'>بازی های من</Typography>
+        </GameTabStyle>
+        <Button 
+          fullWidth 
+          variant='contained' 
+          color='warning'
+          onClick={handleNewGame}
+          startIcon={<img src="/src/assets/+.svg" alt='+'/>}
+          sx={{marginTop: "12px"}}>
+            افزودن بازی جدید 
+          </Button>
       </Box>
-      <Button
-        fullWidth 
-        variant='contained' 
-        color='warning'
-        sx={{margin: "12px 0px"}}>
-          افزودن بازی جدید 
-      </Button>
       <Content>
         <Box className="content">
           <Typography variant='h1'>
@@ -86,7 +115,7 @@ const MyGame = (props: Props) => {
           }}>2/4</Typography>
           <Typography>بازیکن های اضافه شده:</Typography>
         </Box>
-        <Button variant="contained" fullWidth startIcon={<img src="/src/assets/+.svg" alt='+'/>}>
+        <Button variant="contained" fullWidth startIcon={<img src="/src/assets/+.svg" alt='+'/>} onClick={handleNewMatch}>
            دنبال کردن    
         </Button>
         <Paper

@@ -1,25 +1,47 @@
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button, TextField, Typography, styled } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+
+const GameTabStyle = styled(Box)(({theme})=> ({
+  color: theme.palette.info.light,
+  display: "flex",
+  flexDirection: "row",
+  p: {
+    flexGrow: 1,
+    textAlign: "center",
+    borderBottom: "1px solid"
+  },
+  ".first": {
+    marginRight: "8px",
+    color: theme.palette.primary.main
+  },
+  ".second": {
+    marginLeft: "8px"
+  }
+}))
 
 type Props = {}
 
 const NewGame = (props: Props) => {
+
+  const navigate = useNavigate();
+
+  const handleNewGame = () => {
+    navigate("/mygames");
+  }
+
   return (
     <Box sx={{padding: "10px 39px"}}>
-      <Box sx={{display: "flex"}}>
-        <TextField 
-          variant='standard' 
-          value={"یافتن بازی"} 
-          fullWidth sx={{marginRight: "15px"}}/>
-        <TextField 
-          variant='standard' 
-          value={"بازی های من"}
-          fullWidth />
-      </Box>
+      <GameTabStyle>
+        <Typography className='first'>یافتن بازی</Typography>
+        <Typography className='second'>بازی های من</Typography>
+      </GameTabStyle>
       <Button 
         fullWidth 
         variant='contained' 
         color='warning'
-        sx={{color: "#ffffff", marginTop: "12px"}}>
+        onClick={handleNewGame}
+        startIcon={<img src="/src/assets/+.svg" alt='+'/>}
+        sx={{marginTop: "12px"}}>
           افزودن بازی جدید 
         </Button>
     </Box>

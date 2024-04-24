@@ -1,4 +1,5 @@
 import { Box, Button, Typography, styled } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const StyledProfile = styled("div")(({theme}) => ({
   ".avatar": {
@@ -61,6 +62,12 @@ const StyledProfile = styled("div")(({theme}) => ({
 type Props = {}
 
 const Profile = (props: Props) => {
+
+  const navigate = useNavigate();
+  const handleEditProfile = () => {
+    navigate("/editprofile");
+  }
+
   return (
     <StyledProfile>
       <img src='/src/assets/dashboard.png' alt='dashboard'/>
@@ -85,7 +92,7 @@ const Profile = (props: Props) => {
             <Typography className='content' align='center'>دنبال کنندگان</Typography>
           </div>
         </Box>
-        <Button variant='contained' color='primary'>ویرایش پروفایل</Button>
+        <Button variant='contained' color='primary' onClick={handleEditProfile}>ویرایش پروفایل</Button>
         <Box className="info">
           <Typography>مازندران، ساری</Typography>
           <Typography>: منطقه</Typography>
