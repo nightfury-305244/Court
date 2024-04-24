@@ -18,7 +18,7 @@ const Content = styled(Card)(({theme})=>({
 
 type Props = {}
 
-const NewMatch = (props: Props) => {
+const NewMatch = (_props: Props) => {
   return (
     <Box sx={{padding: "20px"}}>
       <Content>

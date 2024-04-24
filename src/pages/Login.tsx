@@ -58,7 +58,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [isNumber, setNumber] = useState(true);
   const [phone, setPhone] = useState("");
-  const [pin, setPin] = useState("");
+  const [_pin, setPin] = useState("");
 
   const HandleSendCode = () => {
     setNumber(false);

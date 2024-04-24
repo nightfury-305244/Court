@@ -1,4 +1,4 @@
-import { Box, Grid, IconButton, styled } from '@mui/material';
+import { Grid, IconButton, styled } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

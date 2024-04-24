@@ -45,10 +45,10 @@ const StyledCardContend = styled(CardContent)(({theme})=> ({
 
 type Props = {}
 
-const EditProfile = (props: Props) => {
+const EditProfile = (_props: Props) => {
   const [rating, setRating] = useState(5.0);
 
-  const handleSlider = (event: Event, newValue: number | number[]) => {
+  const handleSlider = (_event: Event, newValue: number | number[]) => {
     setRating(newValue as number);
   };
 

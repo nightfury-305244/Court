@@ -61,7 +61,7 @@ const StyledProfile = styled("div")(({theme}) => ({
 
 type Props = {}
 
-const Profile = (props: Props) => {
+const Profile = (_props: Props) => {
 
   const navigate = useNavigate();
   const handleEditProfile = () => {

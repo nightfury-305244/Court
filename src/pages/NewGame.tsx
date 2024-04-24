@@ -1,4 +1,4 @@
-import { Box, Button, TextField, Typography, styled } from '@mui/material'
+import { Box, Button, Typography, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 const GameTabStyle = styled(Box)(({theme})=> ({
@@ -21,7 +21,7 @@ const GameTabStyle = styled(Box)(({theme})=> ({
 
 type Props = {}
 
-const NewGame = (props: Props) => {
+const NewGame = (_props: Props) => {
 
   const navigate = useNavigate();
 

@@ -63,7 +63,9 @@ const GameTabStyle = styled(Box)(({theme})=> ({
   }
 }))
 
-const MyGame = () => {
+type Props = {}
+
+const MyGame = (_props: Props) => {
 
   const navigate = useNavigate();
 
