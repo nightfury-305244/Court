@@ -16,6 +16,7 @@
 * {
  box-sizing: border-box;
  margin: 0; 
+ text-align: end;
 }
 
 body {
@@ -25,4 +26,5 @@ body {
   align-items: center;
   place-items: center;
   min-height: 100vh;
+  text-align: end;
 }

@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { IconButton, styled } from '@mui/material';
 
 const StyledFooter = styled("div")(({theme}) => ({
   padding: "2px 19px 22px 19px",
@@ -19,11 +19,11 @@ const Footer = () => {
   return (
     <StyledFooter>
       <div>
-        <img src='/src/assets/majesticons_home.svg' alt='home' />
-        <img src='/src/assets/tennis-ball_1.svg' alt='tennis-ball' />
-        <img src='/src/assets/basil_add-solid.svg' alt='plus' />
-        <img src='/src/assets/majesticons_chat.svg' alt='chat' />
-        <img src='/src/assets/solar_chart-bold.svg' alt='chart' />
+        <IconButton><img src='/src/assets/majesticons_home.svg' alt='home' /></IconButton>
+        <IconButton><img src='/src/assets/tennis-ball_1.svg' alt='tennis-ball' /></IconButton>
+        <IconButton><img src='/src/assets/basil_add-solid.svg' alt='plus' /></IconButton>
+        <IconButton><img src='/src/assets/majesticons_chat.svg' alt='chat' /></IconButton>
+        <IconButton><img src='/src/assets/solar_chart-bold.svg' alt='chart' /></IconButton>
       </div>
     </StyledFooter>
   )

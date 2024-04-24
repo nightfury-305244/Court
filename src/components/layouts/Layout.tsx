@@ -4,14 +4,20 @@ import { Outlet } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 
 const StyledLayout = styled("div")(({theme}) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.secondary.main,
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between"
 }))
 
 const Layout = () => {
   return (
     <StyledLayout>
-      <Header />
-      <Outlet/>
+      <div>
+        <Header />
+        <Outlet/>
+      </div>
       <Footer />
     </StyledLayout>
   )
