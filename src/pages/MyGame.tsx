@@ -1,7 +1,7 @@
-import { Box, Button, Card, Chip, IconButton, InputBase, Paper, TextField, Typography, styled } from '@mui/material'
+import { Box, Button, Card, Chip, IconButton, InputBase, Paper, Typography, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
-const Content = styled(Card)(({theme})=>({
+const Content = styled(Card)(()=>({
   borderRadius: "8px",
   boxShadow: "0px 1px 30px 0px #0000001A",
   display: "flex",
@@ -28,6 +28,20 @@ const Content = styled(Card)(({theme})=>({
       height: "16px",
       marginLeft: "7px"
     }
+  },
+  ".carousel": {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "flex-start",
+    ".item": {
+      width: "65px",
+      display: "flex",
+      flexDirection: "column",
+      "img": {
+        width: "46px",
+        height: "46px",
+      }
+    }
   }
 }))
 
@@ -49,9 +63,7 @@ const GameTabStyle = styled(Box)(({theme})=> ({
   }
 }))
 
-type Props = {}
-
-const MyGame = (props: Props) => {
+const MyGame = () => {
 
   const navigate = useNavigate();
 
@@ -114,6 +126,22 @@ const MyGame = (props: Props) => {
             marginRight: "5px"
           }}>2/4</Typography>
           <Typography>بازیکن های اضافه شده:</Typography>
+        </Box>
+        <Box className="carousel">
+          <Box className="item">
+            <IconButton><img src="/src/assets/Group_62.png" alt="add" /></IconButton>
+          </Box>
+          <Box className="item">
+            <IconButton><img src="/src/assets/Group_62.png" alt="add" /></IconButton>
+          </Box>
+          <Box className="item">
+            <IconButton><img src="/src/assets/Ellipse5.png" alt="add" /></IconButton>
+            <Typography>رضا نورانی</Typography>
+          </Box>
+          <Box className="item">
+            <IconButton><img src="/src/assets/Ellipse4.png" alt="add" /></IconButton>
+            <Typography>نیلو</Typography>
+          </Box>
         </Box>
         <Button variant="contained" fullWidth startIcon={<img src="/src/assets/+.svg" alt='+'/>} onClick={handleNewMatch}>
            دنبال کردن    
