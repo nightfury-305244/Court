@@ -3,6 +3,8 @@ import {
   Avatar, styled, InputAdornment, TextField, Slider, Typography, Button 
 } from '@mui/material';
 import { useState } from 'react';
+import pointSVG from "../assets/point.svg"
+import taskSVG from "../assets/task.svg"
 
 const StyledCardContend = styled(CardContent)(({theme})=> ({
   textAlign: 'center', 
@@ -100,7 +102,7 @@ const EditProfile = (_props: Props) => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <img src='/src/assets/point.svg' />
+                  <img src={pointSVG} />
                 </InputAdornment>
               ),
             }}
@@ -115,7 +117,7 @@ const EditProfile = (_props: Props) => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <img src='/src/assets/task.svg' />
+                  <img src={taskSVG} />
                 </InputAdornment>
               ),
             }}

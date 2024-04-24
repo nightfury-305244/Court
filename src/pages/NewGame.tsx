@@ -1,5 +1,6 @@
 import { Box, Button, Typography, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import plusSvg from "../assets/+.svg"
 
 const GameTabStyle = styled(Box)(({theme})=> ({
   color: theme.palette.info.light,
@@ -40,7 +41,7 @@ const NewGame = (_props: Props) => {
         variant='contained' 
         color='warning'
         onClick={handleNewGame}
-        startIcon={<img src="/src/assets/+.svg" alt='+'/>}
+        startIcon={<img src={plusSvg} alt='+'/>}
         sx={{marginTop: "12px"}}>
           افزودن بازی جدید 
         </Button>

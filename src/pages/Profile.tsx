@@ -1,5 +1,8 @@
 import { Box, Button, Typography, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import dashboradImg from "../assets/dashboard.png"
+import avatar from "../assets/avatar.png"
+import avatarback from "../assets/avatar_border.svg"
 
 const StyledProfile = styled("div")(({theme}) => ({
   ".avatar": {
@@ -70,7 +73,7 @@ const Profile = (_props: Props) => {
 
   return (
     <StyledProfile>
-      <img src='/src/assets/dashboard.png' alt='dashboard'/>
+      <img src={dashboradImg} alt='dashboard'/>
       <div className='container'>
         <Typography variant='h1' align='center'>احسان نوروزی</Typography>
         <Typography className="step" align='center'>از پرو فایل خودتان را تکمیل کردید</Typography>
@@ -110,8 +113,8 @@ const Profile = (_props: Props) => {
           <Typography>: قـــــــــــد</Typography>
         </Box>
       </div>
-      <img className='avatarBorder' src='/src/assets/avatar_border.svg' alt='avatar_border' />
-      <img className='avatar' src='/src/assets/avatar.png' alt='avatar' />
+      <img className='avatarBorder' src={avatarback} alt='avatar_border' />
+      <img className='avatar' src={avatar} alt='avatar' />
     </StyledProfile>
   )
 }

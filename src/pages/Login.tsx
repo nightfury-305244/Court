@@ -4,6 +4,7 @@ import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import PinInput from 'react-pin-input';
 import { useNavigate } from 'react-router-dom';
+import metaLogo from "../assets/MetaLogo.png"
 
 const LandingPage = styled("div")(({theme})=>({
   width: "393px",
@@ -73,7 +74,7 @@ const Login = () => {
 
   return (
     <LandingPage>
-      <img className="logo" src="/src/assets/MetaLogo.png" alt='meta logo' />
+      <img className="logo" src={metaLogo} alt='meta logo' />
       {isNumber ? (
         <div className='phoneNumber'>
           <Typography sx={{mb: "5px"}}>شماره موبایل</Typography>

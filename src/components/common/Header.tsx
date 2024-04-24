@@ -1,4 +1,6 @@
 import { IconButton, styled } from '@mui/material'
+import bell from "../../assets/bell.svg"
+import avatar from "../../assets/avatar.png"
 
 const StyledHeader = styled("div")(({theme}) => ({
   width: '100%',
@@ -24,10 +26,10 @@ const Header = () => {
     <StyledHeader>
       <div>
         <IconButton>
-          <img className='bell' src='/src/assets/bell.svg' alt='notification' />
+          <img className='bell' src={bell} alt='notification' />
         </IconButton>
         <IconButton>
-          <img className='avatar' src='/src/assets/avatar.png' alt='notification' />
+          <img className='avatar' src={avatar} alt='notification' />
         </IconButton>
       </div>
     </StyledHeader>

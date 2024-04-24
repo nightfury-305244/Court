@@ -1,4 +1,6 @@
 import { Box, Button, Card, Checkbox, FormControl, FormControlLabel, Grid, IconButton, InputAdornment, InputBase, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography, styled } from '@mui/material'
+import clock from "../assets/clock.svg"
+import search from "../assets/search.svg"
 
 const Content = styled(Card)(({theme})=>({
   color: theme.palette.info.main,
@@ -62,7 +64,7 @@ const NewMatch = (_props: Props) => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <img src='/src/assets/clock.svg' alt='clock' />
+                    <img src={clock} alt='clock' />
                   </InputAdornment>
                 ),
               }}
@@ -76,7 +78,7 @@ const NewMatch = (_props: Props) => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <img src='/src/assets/clock.svg' alt='clock' />
+                    <img src={clock} alt='clock' />
                   </InputAdornment>
                 ),
               }}
@@ -159,7 +161,7 @@ const NewMatch = (_props: Props) => {
               inputProps={{ 'aria-label': 'نام زمین خود را وارد کنید...' }}
             />
             <IconButton color="primary" sx={{ p: '2.5px 8.5px' }} aria-label="directions">
-              <img src="/src/assets/search.svg" alt='search'/>
+              <img src={search} alt='search'/>
             </IconButton>
           </Paper>
         </Box>

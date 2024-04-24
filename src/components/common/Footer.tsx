@@ -1,6 +1,12 @@
 import { Grid, IconButton, styled } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import home from "../../assets/majesticons_home.svg"
+import chat from "../../assets/majesticons_chat.svg"
+import baseAdd from "../../assets/basil_add-solid.svg"
+import tennisBell from "../../assets/tennis-ball_1.svg"
+import solarChart from "../../assets/solar_chart-bold.svg"
+import Rectangle from "../../assets/Rectangle.svg"
 
 const StyledFooter = styled("div")(({theme}) => ({
   padding: "2px 19px 22px 19px",
@@ -48,24 +54,24 @@ const Footer = () => {
         alignItems="center"
       >
         <Grid item>
-          <IconButton><img src='/src/assets/majesticons_home.svg' alt='home' /></IconButton>
-          {showImage === "#" && <img className="select" src='/src/assets/Rectangle.svg' alt='Rectangle' />}
+          <IconButton><img src={home} alt='home' /></IconButton>
+          {showImage === "#" && <img className="select" src={Rectangle} alt='Rectangle' />}
         </Grid>
         <Grid item>
-          <IconButton onClick={handleGames}><img src='/src/assets/tennis-ball_1.svg' alt='tennis-ball' /></IconButton>
-          {showImage === "newgame" && <img className="select" src='/src/assets/Rectangle.svg' alt='Rectangle' />}
+          <IconButton onClick={handleGames}><img src={tennisBell} alt='tennis-ball' /></IconButton>
+          {showImage === "newgame" && <img className="select" src={Rectangle} alt='Rectangle' />}
         </Grid>
         <Grid item>
-          <IconButton><img src='/src/assets/basil_add-solid.svg' alt='plus' /></IconButton>
-          {showImage === "#" && <img className="select" src='/src/assets/Rectangle.svg' alt='Rectangle' />}
+          <IconButton><img src={baseAdd} alt='plus' /></IconButton>
+          {showImage === "#" && <img className="select" src={Rectangle} alt='Rectangle' />}
         </Grid>
         <Grid item>
-          <IconButton onClick={handleProfile}><img src='/src/assets/majesticons_chat.svg' alt='chat' /></IconButton>
-          {showImage === "profile" && <img className="select" src='/src/assets/Rectangle.svg' alt='Rectangle' />}
+          <IconButton onClick={handleProfile}><img src={chat} alt='chat' /></IconButton>
+          {showImage === "profile" && <img className="select" src={Rectangle} alt='Rectangle' />}
         </Grid>
         <Grid item>
-          <IconButton><img src='/src/assets/solar_chart-bold.svg' alt='chart' /></IconButton>
-          {showImage === "#" && <img className="select" src='/src/assets/Rectangle.svg' alt='Rectangle' />}
+          <IconButton><img src={solarChart} alt='chart' /></IconButton>
+          {showImage === "#" && <img className="select" src={Rectangle} alt='Rectangle' />}
         </Grid>
       </Grid>
     </StyledFooter>

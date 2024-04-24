@@ -1,5 +1,13 @@
 import { Box, Button, Card, Chip, IconButton, InputBase, Paper, Typography, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import plusSVG from "../assets/+.svg"
+import pointSVG from "../assets/point.svg"
+import Group from "../assets/Group_62.png"
+import avatar4 from "../assets/Ellipse4.png"
+import avatar5 from "../assets/Ellipse5.png"
+import arrow from "../assets/fluent_send-32-filled.svg"
+import mdi from "../assets/mdi_like.svg"
+import vector from "../assets/Vector.svg"
 
 const Content = styled(Card)(()=>({
   borderRadius: "8px",
@@ -89,7 +97,7 @@ const MyGame = (_props: Props) => {
           variant='contained' 
           color='warning'
           onClick={handleNewGame}
-          startIcon={<img src="/src/assets/+.svg" alt='+'/>}
+          startIcon={<img src={plusSVG} alt='+'/>}
           sx={{marginTop: "12px"}}>
             افزودن بازی جدید 
           </Button>
@@ -104,19 +112,19 @@ const MyGame = (_props: Props) => {
         <Box sx={{marginTop: "8px"}}>
           <Box className="item">
             <Typography>14:00-13:00 سشنبه 13/09</Typography>
-            <img src='/src/assets/point.svg' alt="point"/>
+            <img src={pointSVG} alt="point"/>
           </Box>
           <Box className="item">
             <Typography>قائشمهر،خیابان تهران،تلار 10</Typography>
-            <img src='/src/assets/point.svg' alt="point"/>
+            <img src={pointSVG} alt="point"/>
           </Box>
           <Box className="item">
             <Typography>زمین را رزرو کردم</Typography>
-            <img src='/src/assets/point.svg' alt="point"/>
+            <img src={pointSVG} alt="point"/>
           </Box>
           <Box className="item">
             <Typography>رایگان</Typography>
-            <img src='/src/assets/point.svg' alt="point"/>
+            <img src={pointSVG} alt="point"/>
           </Box>
         </Box>
         <Box className="item" sx={{marginTop: "8px"}}>
@@ -131,21 +139,21 @@ const MyGame = (_props: Props) => {
         </Box>
         <Box className="carousel">
           <Box className="item">
-            <IconButton><img src="/src/assets/Group_62.png" alt="add" /></IconButton>
+            <IconButton><img src={Group} alt="add" /></IconButton>
           </Box>
           <Box className="item">
-            <IconButton><img src="/src/assets/Group_62.png" alt="add" /></IconButton>
+            <IconButton><img src={Group} alt="add" /></IconButton>
           </Box>
           <Box className="item">
-            <IconButton><img src="/src/assets/Ellipse5.png" alt="add" /></IconButton>
+            <IconButton><img src={avatar5} alt="add" /></IconButton>
             <Typography>رضا نورانی</Typography>
           </Box>
           <Box className="item">
-            <IconButton><img src="/src/assets/Ellipse4.png" alt="add" /></IconButton>
+            <IconButton><img src={avatar4} alt="add" /></IconButton>
             <Typography>نیلو</Typography>
           </Box>
         </Box>
-        <Button variant="contained" fullWidth startIcon={<img src="/src/assets/+.svg" alt='+'/>} onClick={handleNewMatch}>
+        <Button variant="contained" fullWidth startIcon={<img src={plusSVG} alt='+'/>} onClick={handleNewMatch}>
            دنبال کردن    
         </Button>
         <Paper
@@ -158,7 +166,7 @@ const MyGame = (_props: Props) => {
             inputProps={{ 'aria-label': 'نظر خود را بنویسید' }}
           />
           <IconButton color="primary" sx={{ p: '2.5px 8.5px' }} aria-label="directions">
-            <img src="/src/assets/fluent_send-32-filled.svg" alt='send'/>
+            <img src={arrow} alt='send'/>
           </IconButton>
         </Paper>
         <Box sx={{
@@ -169,10 +177,10 @@ const MyGame = (_props: Props) => {
           mt: "8px"
         }}>
           <Box sx={{display: 'flex', flexDirection: "row", p: "7px 0"}}>
-            <img src='/src/assets/mdi_like.svg' alt='mdi_like'/>
+            <img src={mdi} alt='mdi_like'/>
             <Typography>12</Typography>
           </Box>
-          <img src='/src/assets/Vector.svg' alt='Vector'/>
+          <img src={vector} alt='Vector'/>
         </Box>
       </Content>
     </Box>
