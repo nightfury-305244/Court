@@ -1,6 +1,6 @@
 import { 
   Box, Card, CardContent, 
-  Avatar, styled, InputAdornment, TextField, Slider, SliderValueLabelProps, Tooltip, Typography, Button 
+  Avatar, styled, InputAdornment, TextField, Slider, Typography, Button 
 } from '@mui/material';
 import { useState } from 'react';
 
