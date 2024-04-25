@@ -2,12 +2,10 @@ import { Box, Button, Card, Chip, IconButton, InputBase, Paper, Typography, styl
 import { useNavigate } from 'react-router-dom'
 import plusSVG from "../assets/+.svg"
 import pointSVG from "../assets/point.svg"
-import Group from "../assets/Group_62.png"
-import avatar4 from "../assets/Ellipse4.png"
-import avatar5 from "../assets/Ellipse5.png"
 import arrow from "../assets/fluent_send-32-filled.svg"
 import mdi from "../assets/mdi_like.svg"
 import vector from "../assets/Vector.svg"
+import HorizontalScrolling from '../components/component/HorizontalScrolling'
 
 const Content = styled(Card)(()=>({
   borderRadius: "8px",
@@ -27,7 +25,7 @@ const Content = styled(Card)(()=>({
       lineHeight: "18.6px"
     }
   },
-  ".item": {
+  ".itemView": {
     display: "flex",
     justifyContent: "end",
     alignItems: "center",
@@ -37,20 +35,6 @@ const Content = styled(Card)(()=>({
       marginLeft: "7px"
     }
   },
-  ".carousel": {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "flex-start",
-    ".item": {
-      width: "65px",
-      display: "flex",
-      flexDirection: "column",
-      "img": {
-        width: "46px",
-        height: "46px",
-      }
-    }
-  }
 }))
 
 const GameTabStyle = styled(Box)(({theme})=> ({
@@ -85,6 +69,25 @@ const MyGame = (_props: Props) => {
     navigate("/editornewmatch")
   }
 
+  const data = [
+    {
+      url: "/src/assets/Group_62.png",
+      name: ""
+    },
+    {
+      url: "/src/assets/Group_62.png",
+      name: ""
+    },
+    {
+      url: "/src/assets/Ellipse5.png",
+      name: "رضا نورانی"
+    },
+    {
+      url: "/src/assets/Ellipse4.png",
+      name: "نیلو"
+    },
+  ]
+
   return (
     <Box sx={{p: "10px 39px"}}>
       <Box>
@@ -107,27 +110,27 @@ const MyGame = (_props: Props) => {
           <Typography variant='h1'>
             زمین بازی ویلا پارک
           </Typography>
-          <Chip color='success' label="توسط رضا نورانی و نیلو" />
+          <Chip sx={{height: "fit-content"}} color='info' label="توسط رضا نورانی و نیلو" />
         </Box>
         <Box sx={{marginTop: "8px"}}>
-          <Box className="item">
-            <Typography>14:00-13:00 سشنبه 13/09</Typography>
+          <Box className="itemView">
+            <Typography>سشنبه 13/09</Typography> <Typography>14:00-13:00</Typography>
             <img src={pointSVG} alt="point"/>
           </Box>
-          <Box className="item">
+          <Box className="itemView">
             <Typography>قائشمهر،خیابان تهران،تلار 10</Typography>
             <img src={pointSVG} alt="point"/>
           </Box>
-          <Box className="item">
+          <Box className="itemView">
             <Typography>زمین را رزرو کردم</Typography>
             <img src={pointSVG} alt="point"/>
           </Box>
-          <Box className="item">
+          <Box className="itemView">
             <Typography>رایگان</Typography>
             <img src={pointSVG} alt="point"/>
           </Box>
         </Box>
-        <Box className="item" sx={{marginTop: "8px"}}>
+        <Box className="itemView" sx={{marginTop: "8px"}}>
           <Typography sx={{
             color: "#FEBE40",
             fontSize: "24px",
@@ -135,25 +138,10 @@ const MyGame = (_props: Props) => {
             lineHeight: "37.2px",
             marginRight: "5px"
           }}>2/4</Typography>
-          <Typography>بازیکن های اضافه شده:</Typography>
+          <Typography variant='h2'>بازیکن های اضافه شده:</Typography>
         </Box>
-        <Box className="carousel">
-          <Box className="item">
-            <IconButton><img src={Group} alt="add" /></IconButton>
-          </Box>
-          <Box className="item">
-            <IconButton><img src={Group} alt="add" /></IconButton>
-          </Box>
-          <Box className="item">
-            <IconButton><img src={avatar5} alt="add" /></IconButton>
-            <Typography>رضا نورانی</Typography>
-          </Box>
-          <Box className="item">
-            <IconButton><img src={avatar4} alt="add" /></IconButton>
-            <Typography>نیلو</Typography>
-          </Box>
-        </Box>
-        <Button variant="contained" fullWidth startIcon={<img src={plusSVG} alt='+'/>} onClick={handleNewMatch}>
+        <HorizontalScrolling data={data} />
+        <Button variant="contained" fullWidth startIcon={<img src={plusSVG} alt='+'/>} onClick={handleNewMatch} sx={{mt:"8px"}}>
            دنبال کردن    
         </Button>
         <Paper
@@ -165,7 +153,7 @@ const MyGame = (_props: Props) => {
             placeholder="نظر خود را بنویسید"
             inputProps={{ 'aria-label': 'نظر خود را بنویسید' }}
           />
-          <IconButton color="primary" sx={{ p: '2.5px 8.5px' }} aria-label="directions">
+          <IconButton color="primary" sx={{ m: '2.5px 8.5px', p: 0 }} aria-label="directions">
             <img src={arrow} alt='send'/>
           </IconButton>
         </Paper>

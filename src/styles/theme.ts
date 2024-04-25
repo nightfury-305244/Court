@@ -29,9 +29,10 @@ export const theme = createTheme({
       lineHeight: "37.2px",
     },
     h2: {
-      fontSize: '2rem',
+      fontSize: '12px',
       fontWeight: 400,
-      color: 'darkgreen'
+      color: "#000000",
+      lineHeight: "18.6px"
     },
     // You can add more styles for other text variants (h3, h4, subtitle1, etc.)
     body1: {
