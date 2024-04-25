@@ -7,13 +7,13 @@ import avatarback from "../assets/avatar_border.svg"
 const StyledProfile = styled("div")(({theme}) => ({
   ".avatar": {
     position: "relative",
-    right: "46px",
-    top: "-495px",
+    right: "20px",
+    top: "-520px",
   },
   ".avatarBorder": {
     position: "relative",
-    right: "-91px",
-    top: "-490px",
+    right: "-116px",
+    top: "-514px",
   },
   ".container": {
     backgroundColor: theme.palette.primary.light,
@@ -30,11 +30,23 @@ const StyledProfile = styled("div")(({theme}) => ({
       fontSize: '16px', 
       color: theme.palette.info.main
     },
+    ".vertiHr" :{
+      border: "none",
+      backgroundColor: "#e0e0e0",
+      width: "0.5px",
+    },
+    ".horiHr": {
+      border: "none",
+      backgroundColor: "#e0e0e0",
+      height: "0.5px",
+    },
     ".ntrp": {
       marginTop: "15px",
       display: "flex",
+      marginBottom: "9px",
       "div": {
-        margin: "auto",
+        flexGrow: 1,
+        flexBasis: 0,
         ".title": {
           color: theme.palette.info.light,
           fontWeight: "700",
@@ -42,7 +54,7 @@ const StyledProfile = styled("div")(({theme}) => ({
           lineHeight: "37.2px"
         },
         ".content": {
-          color: theme.palette.primary.light,
+          color: theme.palette.primary.dark,
           fontWeight: "600",
           fontSize: "16px",
           lineHeight: "24.8px"
@@ -82,18 +94,19 @@ const Profile = (_props: Props) => {
             <Typography className='title' align='center'>3.0</Typography>
             <Typography className='content' align='center'>NTRP</Typography>
           </div>
-          <hr />
+          <hr className='vertiHr'/>
           <div>
             <Typography className='title' align='center'>نفر  34</Typography>
             <Typography className='content' align='center'>دنبال میکند</Typography>
           </div>
-          <hr />
+          <hr className='vertiHr' />
           <div>
             <Typography className='title' align='center'>123 نفر</Typography>
             <Typography className='content' align='center'>دنبال کنندگان</Typography>
           </div>
         </Box>
-        <Button variant='contained' color='primary' onClick={handleEditProfile}>ویرایش پروفایل</Button>
+        <hr className='horiHr'/>
+        <Button variant='contained' color='primary' sx={{m: "8px"}} onClick={handleEditProfile}>ویرایش پروفایل</Button>
         <Box className="info">
           <Typography>مازندران، ساری</Typography>
           <Typography>: منطقه</Typography>

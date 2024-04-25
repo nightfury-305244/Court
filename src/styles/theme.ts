@@ -46,6 +46,7 @@ export const theme = createTheme({
     primary: {
       main: "#3C638E", // blue
       light: "#FFFFFF",
+      dark: "#000000" 
     },
     secondary:{
       main: "#EBEEEF", //grey 1
@@ -53,6 +54,7 @@ export const theme = createTheme({
     },
     warning:{
       main: "#FEBE40", //yellow
+      light: "#E0E0E0"
     },
     info: {
       main: "#606060",  // grey (badge)
