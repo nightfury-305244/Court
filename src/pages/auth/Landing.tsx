@@ -1,7 +1,7 @@
 import { styled } from '@mui/material'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import metaLogo from "../assets/MetaLogo.png"
+import metaLogo from "../../assets/MetaLogo.png"
 
 const LandingPage = styled("div")(({theme})=>({
   width: "393px",

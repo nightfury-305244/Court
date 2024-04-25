@@ -4,7 +4,7 @@ import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import PinInput from 'react-pin-input';
 import { useNavigate } from 'react-router-dom';
-import metaLogo from "../assets/MetaLogo.png"
+import metaLogo from "../../assets/MetaLogo.png"
 
 const LandingPage = styled("div")(({theme})=>({
   width: "393px",

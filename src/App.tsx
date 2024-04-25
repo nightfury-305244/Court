@@ -5,9 +5,9 @@ import EditProfile from './pages/EditProfile'
 import NewGame from './pages/NewGame'
 import MyGame from './pages/MyGame'
 import NewMatch from './pages/NewMatch'
-import Landing from './pages/Landing'
-import SignUp from './pages/SignUp'
-import Login from './pages/Login'
+import Landing from './pages/auth/Landing'
+import SignUp from './pages/auth/SignUp'
+import Login from './pages/auth/Login'
 import { useAppSelector } from './store/hook'
 
 function App() {

@@ -1,9 +1,9 @@
 import { Box, Button, FormControl, FormLabel, Input, Typography, styled } from '@mui/material'
 import 'react-international-phone/style.css';
 import { Link } from 'react-router-dom';
-import metaLogo from "../assets/MetaLogo.png"
-import { useAppDispatch } from '../store/hook';
-import { loginUser } from '../store/userSlice';
+import metaLogo from "../../assets/MetaLogo.png"
+import { useAppDispatch } from '../../store/hook';
+import { loginUser } from '../../store/userSlice';
 
 const LandingPage = styled("div")(({theme})=>({
   width: "393px",
