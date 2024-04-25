@@ -16,12 +16,7 @@ export const theme = createTheme({
     },
   },
   typography:{
-    fontFamily: [
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif'
-    ].join(','),
+    fontFamily: 'Yekan Bakh',
     h1: {
       fontSize: '24px',
       fontWeight: 700,
@@ -32,7 +27,13 @@ export const theme = createTheme({
       fontSize: '12px',
       fontWeight: 400,
       color: "#000000",
-      lineHeight: "18.6px"
+      lineHeight: "18.6px",
+    },
+    h4: {
+      fontWeight: "700",
+      fontSize: "12px",
+      lineHeight: "18.6px",
+      color: "#A4A2A4",
     },
     // You can add more styles for other text variants (h3, h4, subtitle1, etc.)
     body1: {

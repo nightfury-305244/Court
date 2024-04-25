@@ -6,10 +6,10 @@ const GameTabStyle = styled(Box)(({theme})=> ({
   color: theme.palette.info.light,
   display: "flex",
   flexDirection: "row",
-  p: {
+  h4: {
     flexGrow: 1,
     textAlign: "center",
-    borderBottom: "1px solid"
+    borderBottom: "1px solid",
   },
   ".first": {
     marginRight: "8px",
@@ -33,8 +33,8 @@ const NewGame = (_props: Props) => {
   return (
     <Box sx={{padding: "10px 39px"}}>
       <GameTabStyle>
-        <Typography className='first'>یافتن بازی</Typography>
-        <Typography className='second'>بازی های من</Typography>
+        <Typography variant='h4' className='first'>یافتن بازی</Typography>
+        <Typography variant='h4' className='second'>بازی های من</Typography>
       </GameTabStyle>
       <Button 
         fullWidth 

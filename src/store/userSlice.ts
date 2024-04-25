@@ -1,41 +1,37 @@
-import { createSlice } from "@reduxjs/toolkit";
-
-export interface UserState {
-  name: string,
-  lastname: string,
-  phone: string,
-  city: string,
-  gender: number,
-  username: string,
-  ntrp: number
-}
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export interface IAuthState {
-  user: UserState
-  access_token?: string | null
-  states: object
+  refreshToken:string;
+  token:string;
 }
 
 const initialState: IAuthState= {
-  user: {
-    name: "",
-    lastname: "",
-    phone: "string",
-    city: "string",
-    gender: 0,
-    username: "string",
-    ntrp: 0
-  },
-  access_token: sessionStorage.getItem('access_token'),
-  states: {},
+  refreshToken:"",
+  token:""
 }
+
+export const loginUser = createAsyncThunk("user/setUser", async (user: any, {}) => {
+  try {
+    const res = await axios.post('https://cors-anywhere.herokuapp.com/https://api.binj.ir/api/users/auth/login', user);
+    return res.data
+  } catch (error) {
+    console.log('err=',error)
+  }
+})
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers:{}
+  reducers:{},
+  extraReducers:(builder) => {
+    builder.addCase(loginUser.fulfilled,(state,action) => {
+      state.refreshToken = action.payload.body.refreshToken;
+      state.token = action.payload.body.token;
+      sessionStorage.setItem('access_token', state.token);
+      console.log(state.token)
+    })
+  }
 })
-
-export const {} = userSlice.actions
 
 export default userSlice.reducer

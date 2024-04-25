@@ -41,7 +41,7 @@ const GameTabStyle = styled(Box)(({theme})=> ({
   color: theme.palette.info.light,
   display: "flex",
   flexDirection: "row",
-  p: {
+  h4: {
     flexGrow: 1,
     textAlign: "center",
     borderBottom: "1px solid"
@@ -92,8 +92,8 @@ const MyGame = (_props: Props) => {
     <Box sx={{p: "10px 39px"}}>
       <Box>
         <GameTabStyle>
-          <Typography className='first'>یافتن بازی</Typography>
-          <Typography className='second'>بازی های من</Typography>
+          <Typography variant='h4' className='first'>یافتن بازی</Typography>
+          <Typography variant='h4' className='second'>بازی های من</Typography>
         </GameTabStyle>
         <Button 
           fullWidth 
@@ -164,7 +164,7 @@ const MyGame = (_props: Props) => {
           width: "100%",
           mt: "8px"
         }}>
-          <Box sx={{display: 'flex', flexDirection: "row", p: "7px 0"}}>
+          <Box sx={{display: 'flex', flexDirection: "row", p: "7px 0", alignItems: "center"}}>
             <img src={mdi} alt='mdi_like'/>
             <Typography>12</Typography>
           </Box>

@@ -1,5 +1,5 @@
 :root {
-  font-family: Yekan Bakh, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Yekan Bakh', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -14,12 +14,14 @@
 }
 
 * {
- box-sizing: border-box;
- margin: 0; 
- text-align: end;
+  font-family: 'Yekan Bakh', sans-serif;
+  box-sizing: border-box;
+  margin: 0; 
+  text-align: end;
 }
 
 body {
+  font-family: 'Yekan Bakh', sans-serif;
   margin: 0;
   display: flex;
   justify-content: center;

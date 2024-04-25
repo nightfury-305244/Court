@@ -1,7 +1,6 @@
 import { Container, ThemeProvider } from '@mui/material'
 import { theme } from './styles/theme'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Layout from './components/layouts/Layout'
 import EditProfile from './pages/EditProfile'
@@ -9,6 +8,8 @@ import NewGame from './pages/NewGame'
 import MyGame from './pages/MyGame'
 import NewMatch from './pages/NewMatch'
 import Landing from './pages/Landing'
+import SignUp from './pages/SignUp'
+import Login from './pages/Login'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path='/login' element={<Login />}/>
+            <Route path='/signup' element={<SignUp />}/>
             <Route element={<Layout />}>
               <Route path='/profile' element={<Profile />} />
               <Route path='/editprofile' element={<EditProfile />} />

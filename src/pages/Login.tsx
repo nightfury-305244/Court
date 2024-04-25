@@ -1,10 +1,9 @@
-import { Button, Typography, styled } from '@mui/material'
-import { useState } from 'react'
-import { PhoneInput } from 'react-international-phone';
+import { Box, Button, FormControl, FormLabel, Input, Typography, styled } from '@mui/material'
 import 'react-international-phone/style.css';
-import PinInput from 'react-pin-input';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import metaLogo from "../assets/MetaLogo.png"
+import { useAppDispatch } from '../store/hook';
+import { loginUser } from '../store/userSlice';
 
 const LandingPage = styled("div")(({theme})=>({
   width: "393px",
@@ -14,90 +13,68 @@ const LandingPage = styled("div")(({theme})=>({
   ".logo": {
     width: "154px",
     height: "94px",
-    margin: "98px 0px 234px 0px"
+    margin: "98px 0px 180px 0px"
   },
-  ".phoneNumber": {
+  ".form": {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    width: "100%",
-    padding: "30px",
-    ".react-international-phone-input-container": {
-      display: "flex",
-      ".react-international-phone-country-selector": {
-        flexBasic: 0,
-        ".react-international-phone-country-selector-button": {
-          borderColor: theme.palette.warning.main
-        }
-      },
-      ".react-international-phone-input": {
-        flexGrow: 1,
-        borderColor: theme.palette.warning.main,
-        textAlign: "start"
-      }
-    }
-  },
-  ".pinCode": {
-    padding: "30px",
-    display: "flex",
-    flexDirection: "column",
-    alignItem: "center",
-    ".pincode-input-container": {
-      textAlign: "center",
-      ".pincode-input-text": {
-        borderTop: "none!important",
-        borderLeft: "none!important",
-        borderRight: "none!important",
-        margin:"0 6px!important"
-      }
+    ".MuiFormControl-root":{
+      marginTop: "20px"
     }
   }
 }))
 
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [isNumber, setNumber] = useState(true);
-  const [phone, setPhone] = useState("");
-  const [_pin, setPin] = useState("");
 
-  const HandleSendCode = () => {
-    setNumber(false);
-  }
-  const handleComplete = (value:any) => {
-    // Handle the completed PIN input
-    setPin(value);
-  };
-  const handleAuth = () => {
-    navigate("/profile")
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // Prevent default form submission
+    const formData = new FormData(event.currentTarget); // Get form data from the form element
+    const systemuser = formData.get('systemuser') as string; // Use the 'name' attribute of the input to retrieve the value
+    const password = formData.get('password') as string;
+
+    dispatch(loginUser({systemuser, password}));
   }
 
   return (
     <LandingPage>
       <img className="logo" src={metaLogo} alt='meta logo' />
-      {isNumber ? (
-        <div className='phoneNumber'>
-          <Typography sx={{mb: "5px"}}>شماره موبایل</Typography>
-          <PhoneInput
-            defaultCountry="ua"
-            value={phone}
-            onChange={(ph) => setPhone(ph)}
-          />
-          <Typography sx={{textAlign: "center", mt:"19px", color: "#606060"}}>کد تایید به این شماره پیامک میشود.</Typography>
-          <Button variant='contained' sx={{mt: "20px"}} onClick={HandleSendCode}>ارسال کد</Button>
-        </div>
-        
-      ) : (
-        <div className='pinCode'>
-          <PinInput
-            length={4}
-            onComplete={handleComplete}
-          />
-          <Typography sx={{textAlign: "center", mt:"19px", color: "#606060" }}>کد تایید ارسال شده را وارد کنید لطفا</Typography>
-
-          <Button variant='contained' sx={{mt: "20px"}} onClick={handleAuth}>ارسال کد</Button>
-        </div>
-      )}
+      <Box sx={{p: "30px"}}>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <Typography variant="h1" sx={{textAlign:"center"}}>
+              <b>خوش آمدی!</b>
+            </Typography>
+            <Typography sx={{textAlign:"center"}}>برای ادامه وارد شوید.</Typography>
+          </div>
+          <Box className="form">
+            <FormControl>
+              <FormLabel>نام کاربری</FormLabel>
+              <Input
+                name="systemuser"
+                type="text"
+                placeholder="users3909809448"
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>کلمه عبور</FormLabel>
+              <Input
+                // html input attribute
+                name="password"
+                type="password"
+                placeholder="67463"
+              />
+            </FormControl>
+            <Button sx={{ mt: 5, mb: 2 }} variant='contained' type='submit'>وارد شدن</Button>
+          </Box>
+        </form>
+        <Typography sx={{ alignSelf: 'center', fontSize: 'sm', display: 'flex', alignItems: 'center' }}>
+          {"حساب کاربری ندارید? "}
+          <Link to="/signup" style={{ marginLeft: 1 }}>ثبت نام</Link>
+        </Typography>
+      </Box>
     </LandingPage>
   )
 }

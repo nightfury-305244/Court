@@ -36,14 +36,12 @@ const StyledProfile = styled("div")(({theme}) => ({
       "div": {
         margin: "auto",
         ".title": {
-          fontFamily: "Yekan Bakh",
           color: theme.palette.info.light,
           fontWeight: "700",
           fontSize: "24px",
           lineHeight: "37.2px"
         },
         ".content": {
-          fontFamily: "Yekan Bakh",
           color: theme.palette.primary.light,
           fontWeight: "600",
           fontSize: "16px",
