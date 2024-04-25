@@ -19,8 +19,8 @@ const Landing = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/login'); // Replace with your desired route
-    }, 2000); // 3 seconds delay
+      navigate('/afterloading'); // Replace with your desired route
+    }, 3000); // 3 seconds delay
 
     return () => clearTimeout(timer); // Clear the timer if the component unmounts
   }, [navigate]);
