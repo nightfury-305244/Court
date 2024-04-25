@@ -1,7 +1,7 @@
 import { IconButton, Typography, styled } from '@mui/material';
-import React, { useRef, useState, MouseEvent, useEffect } from 'react';
+import { useRef, useState, MouseEvent, useEffect } from 'react';
 
-const HorizontalDiv = styled("div")(({ theme }) => ({
+const HorizontalDiv = styled("div")(() => ({
   width: "fit-content",
   maxWidth: "100%",
   display: "flex",
