@@ -1,5 +1,4 @@
 import { Grid, IconButton, styled } from '@mui/material';
-import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import home from "../../assets/majesticons_home.svg"
 import chat from "../../assets/majesticons_chat.svg"
