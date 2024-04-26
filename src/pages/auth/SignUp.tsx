@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import PinInput from 'react-pin-input';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import metaLogo from "../../assets/MetaLogo.png"
 
 const LandingPage = styled("div")(({theme})=>({
@@ -85,6 +85,10 @@ const SignUp = () => {
           />
           <Typography sx={{textAlign: "center", mt:"19px", color: "#606060"}}>کد تایید به این شماره پیامک میشود.</Typography>
           <Button variant='contained' sx={{mt: "20px"}} onClick={HandleSendCode}>ارسال کد</Button>
+          <Typography sx={{textAlign: "center", mt:"19px", color: "#606060"}}>
+            {"تذا كان لديك حساب بالفعل، يرجى تسجيل الدخول"}
+            <Link to="/auth/login" style={{ marginLeft: 1 }}>ثبت نام</Link>
+          </Typography>
         </div>
         
       ) : (

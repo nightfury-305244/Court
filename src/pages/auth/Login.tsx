@@ -1,9 +1,11 @@
-import { Box, Button, FormControl, FormLabel, Input, Typography, styled } from '@mui/material'
+import { Box, Button, CircularProgress, FormControl, FormLabel, Input, Typography, styled } from '@mui/material'
 import 'react-international-phone/style.css';
 import { Link } from 'react-router-dom';
 import metaLogo from "../../assets/MetaLogo.png"
 import { useAppDispatch } from '../../store/hook';
-import { loginUser } from '../../store/authSlice';
+import { setToken } from '../../store/authSlice';
+import axios from 'axios';
+import { useState } from 'react';
 
 const LandingPage = styled("div")(({theme})=>({
   width: "393px",
@@ -11,9 +13,12 @@ const LandingPage = styled("div")(({theme})=>({
   backgroundColor: theme.palette.primary.light,
   textAlign: "center",
   ".logo": {
-    width: "154px",
-    height: "94px",
-    margin: "98px 0px 180px 0px"
+    textAlign: "center",
+    "img": {
+      width: "154px",
+      height: "94px",
+    },
+    padding: "98px 0px 180px 0px"
   },
   ".form": {
     display: "flex",
@@ -27,27 +32,49 @@ const LandingPage = styled("div")(({theme})=>({
 
 const Login = () => {
 
+  const [isLoading, setLoading] = useState(true);
+  const [isSuccess, setSuccess] = useState(true);
+
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevent default form submission
     const formData = new FormData(event.currentTarget); // Get form data from the form element
     const systemuser = formData.get('systemuser') as string; // Use the 'name' attribute of the input to retrieve the value
     const password = formData.get('password') as string;
 
-    dispatch(loginUser({systemuser, password}));
+    try {
+
+      setLoading(false);
+
+      const res = await axios.post('https://api.binj.ir/api/users/auth/login', {systemuser, password});
+
+      setLoading(true);
+      setSuccess(true);
+      console.log(res.data.body)
+      dispatch(setToken(res.data.body))
+
+    } catch (error) {
+      console.log("error: ", error)
+      setLoading(true)
+      setSuccess(false);
+    }
   }
 
   return (
     <LandingPage>
-      <img className="logo" src={metaLogo} alt='meta logo' />
-      <Box sx={{p: "30px"}}>
+      <Box className="logo">
+        <img src={metaLogo} alt='meta logo' />
+      </Box>
+      {isLoading ? (
+        <Box sx={{p: "30px"}}>
         <form onSubmit={handleSubmit}>
           <div>
             <Typography variant="h1" sx={{textAlign:"center"}}>
               <b>خوش آمدی!</b>
             </Typography>
             <Typography sx={{textAlign:"center"}}>برای ادامه وارد شوید.</Typography>
+            {!isSuccess && <Typography sx={{color: "red", mt: 2}}>فشل تسجيل الدخول. حاول مرة اخرى.</Typography>}
           </div>
           <Box className="form">
             <FormControl>
@@ -72,9 +99,12 @@ const Login = () => {
         </form>
         <Typography sx={{ alignSelf: 'center', fontSize: 'sm', display: 'flex', alignItems: 'center' }}>
           {"حساب کاربری ندارید? "}
-          <Link to="/signup" style={{ marginLeft: 1 }}>ثبت نام</Link>
+          <Link to="/auth/signup" style={{ marginLeft: 1 }}>ثبت نام</Link>
         </Typography>
       </Box>
+      ):(
+        <CircularProgress size={80}/>
+      )}
     </LandingPage>
   )
 }

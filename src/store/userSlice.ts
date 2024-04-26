@@ -2,14 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 
 export interface UserState {
-  _id: string,
-  firstName: string,
-  lastName: string,
-  city: string,
-  gender: number,
-  username: string,
-  ntrp: number,
-  handside: string,
+  _id?: string,
+  firstName?: string,
+  lastName?: string,
+  city?: string,
+  gender?: number,
+  username?: string,
+  ntrp?: number,
+  handside?: string,
   password?: string,
 }
 
