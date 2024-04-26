@@ -3,7 +3,7 @@ import bell from "../../assets/bell.svg"
 import avatar from "../../assets/avatar.png"
 import React from 'react';
 import { useAppDispatch } from '../../store/hook';
-import { logoutUser } from '../../store/userSlice';
+import { logoutUser } from '../../store/authSlice';
 
 const StyledHeader = styled("div")(({theme}) => ({
   width: '100%',

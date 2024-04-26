@@ -11,7 +11,7 @@ import Login from './pages/auth/Login'
 import { useAppSelector } from './store/hook'
 
 function App() {
-  const {token} = useAppSelector(({user}) => user)
+  const {token} = useAppSelector(({auth}) => auth)
   return (
     <Router>
       <Routes>
