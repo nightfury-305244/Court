@@ -2,7 +2,7 @@ import { Box, Button, CircularProgress, FormControl, FormLabel, Input, Typograph
 import 'react-international-phone/style.css';
 import { Link } from 'react-router-dom';
 import metaLogo from "../../assets/MetaLogo.png"
-import { useAppDispatch } from '../../store/hook';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { setToken } from '../../store/authSlice';
 import axios from 'axios';
 import { useState } from 'react';
@@ -29,7 +29,6 @@ const LandingPage = styled("div")(({theme})=>({
   }
 }))
 
-
 const Login = () => {
 
   const [isLoading, setLoading] = useState(true);
@@ -51,7 +50,6 @@ const Login = () => {
 
       setLoading(true);
       setSuccess(true);
-      console.log(res.data.body)
       dispatch(setToken(res.data.body))
 
     } catch (error) {
@@ -60,6 +58,8 @@ const Login = () => {
       setSuccess(false);
     }
   }
+
+  const user = useAppSelector(({user}) => user)
 
   return (
     <LandingPage>
@@ -83,6 +83,7 @@ const Login = () => {
                 name="systemuser"
                 type="text"
                 placeholder="users3909809448"
+                defaultValue={user.username}
               />
             </FormControl>
             <FormControl>
@@ -92,6 +93,7 @@ const Login = () => {
                 name="password"
                 type="password"
                 placeholder="67463"
+                defaultValue={user.password}
               />
             </FormControl>
             <Button sx={{ mt: 5, mb: 2 }} variant='contained' type='submit'>وارد شدن</Button>

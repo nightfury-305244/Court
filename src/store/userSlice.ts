@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 
 export interface UserState {
@@ -37,7 +37,12 @@ export const getProfile = createAsyncThunk('user/profile', async (id, {}) => {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    setRegister: (state, action: PayloadAction<{systemuser: string, password: string}>) => {
+      state.username = action.payload.systemuser
+      state.password = action.payload.password
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProfile.fulfilled, (state, action)=>{
@@ -47,4 +52,5 @@ const userSlice = createSlice({
   }
 })
 
+export const {setRegister} = userSlice.actions
 export default userSlice.reducer
