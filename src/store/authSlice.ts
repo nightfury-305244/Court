@@ -25,6 +25,7 @@ const authSlice = createSlice({
     setToken: (state, action: PayloadAction<IAuthState>) => {
       state.refreshToken = action.payload.refreshToken
       state.token = action.payload.token
+      sessionStorage.setItem('access_token', state.token)
     }
   },
   extraReducers:() => {}

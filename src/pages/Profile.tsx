@@ -5,15 +5,18 @@ import avatar from "../assets/avatar.png"
 import avatarback from "../assets/avatar_border.svg"
 
 const StyledProfile = styled("div")(({theme}) => ({
+  ".dashboard": {
+    position: "relative"
+  },
   ".avatar": {
-    position: "relative",
-    right: "20px",
-    top: "-520px",
+    position: "absolute",
+    top: "125px",
+    right: "30px"
   },
   ".avatarBorder": {
-    position: "relative",
-    right: "-116px",
-    top: "-514px",
+    position: "absolute",
+    top: "120px",
+    right: "30px"
   },
   ".container": {
     backgroundColor: theme.palette.primary.light,
@@ -55,18 +58,17 @@ const StyledProfile = styled("div")(({theme}) => ({
         },
         ".content": {
           color: theme.palette.primary.dark,
-          fontWeight: "600",
-          fontSize: "16px",
-          lineHeight: "24.8px"
         }
       }
     },
     ".info": {
       display: "flex",
       justifyContent: "end",
+      color: theme.palette.info.main,
       "span": {
         fontWeight: "400",
-        color: theme.palette.info.main
+        fontSize: "16px",
+        lineHeight: "24.8px"
       }
     }
   },
@@ -83,7 +85,11 @@ const Profile = (_props: Props) => {
 
   return (
     <StyledProfile>
-      <img src={dashboradImg} alt='dashboard'/>
+      <Box className="dashboard">
+        <img src={dashboradImg} alt='dashboard'/>
+        <img className='avatarBorder' src={avatarback} alt='avatar_border' />
+        <img className='avatar' src={avatar} alt='avatar' />
+      </Box>
       <div className='container'>
         <Typography variant='h1' align='center'>احسان نوروزی</Typography>
         <Typography className="step" align='center'>از پرو فایل خودتان را تکمیل کردید</Typography>
@@ -92,40 +98,38 @@ const Profile = (_props: Props) => {
         <Box className="ntrp">
           <div>
             <Typography className='title' align='center'>3.0</Typography>
-            <Typography className='content' align='center'>NTRP</Typography>
+            <Typography className='content' variant='h3' align='center'>NTRP</Typography>
           </div>
           <hr className='vertiHr'/>
           <div>
             <Typography className='title' align='center'>نفر  34</Typography>
-            <Typography className='content' align='center'>دنبال میکند</Typography>
+            <Typography className='content' variant='h3' align='center'>دنبال میکند</Typography>
           </div>
           <hr className='vertiHr' />
           <div>
             <Typography className='title' align='center'>123 نفر</Typography>
-            <Typography className='content' align='center'>دنبال کنندگان</Typography>
+            <Typography className='content' variant='h3' align='center'>دنبال کنندگان</Typography>
           </div>
         </Box>
         <hr className='horiHr'/>
         <Button variant='contained' color='primary' sx={{m: "8px"}} onClick={handleEditProfile}>ویرایش پروفایل</Button>
         <Box className="info">
-          <Typography>مازندران، ساری</Typography>
+          <Typography variant='h3'>مازندران، ساری</Typography>
           <Typography>: منطقه</Typography>
         </Box>
         <Box className="info">
-          <Typography>حرفه ای</Typography>
+          <Typography variant='h3'>حرفه ای</Typography>
           <Typography>: سطــــح</Typography>
         </Box>
         <Box className="info">
-          <Typography>راست دست</Typography>
+          <Typography variant='h3'>راست دست</Typography>
           <Typography>: دســـت</Typography>
         </Box>
         <Box className="info">
-          <Typography>185cm</Typography>
+          <Typography variant='h3'>185cm</Typography>
           <Typography>: قـــــــــــد</Typography>
         </Box>
       </div>
-      <img className='avatarBorder' src={avatarback} alt='avatar_border' />
-      <img className='avatar' src={avatar} alt='avatar' />
     </StyledProfile>
   )
 }

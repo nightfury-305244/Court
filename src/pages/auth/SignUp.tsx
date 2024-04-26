@@ -67,7 +67,7 @@ const SignUp = () => {
   const [isLoading, setLoading] = useState(false);
   const [isNumber, setNumber] = useState(true);
   const [phone, setPhone] = useState("");
-  const [pin, setPin] = useState("");
+  const [_pin, setPin] = useState("");
   const dispatch = useAppDispatch();
 
   const HandleSendCode = async () => {

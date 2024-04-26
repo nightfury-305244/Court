@@ -9,7 +9,7 @@ import avatar from '../assets/avatar.png'
 
 const StyledCardContend = styled(CardContent)(({theme})=> ({
   textAlign: 'center', 
-  mt: '-30px',
+  marginTop: "-90px",
   ".field": {
     "label": {
       right: "-10px",
@@ -57,8 +57,8 @@ const EditProfile = (_props: Props) => {
 
   return (
     <Box sx={{ p: 2 }}>
-      <Card sx={{ borderRadius: '8px', overflow: 'visible', boxShadow: 3 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'center', position: 'relative', top: '-40px' }}>
+      <Card sx={{ borderRadius: '8px', overflow: 'visible', boxShadow: 3}}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', position: 'relative', top: '-60px' }}>
           <Avatar 
             alt="Profile Picture" 
             src={avatar} 
