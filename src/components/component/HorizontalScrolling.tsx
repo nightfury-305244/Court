@@ -26,7 +26,7 @@ const HorizontalDiv = styled("div")(() => ({
 
 interface Props {
   data: {
-    url: string,
+    url: any,
     name: string
   }[]
 }

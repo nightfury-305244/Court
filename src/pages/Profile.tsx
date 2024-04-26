@@ -78,7 +78,7 @@ const Profile = (_props: Props) => {
 
   const navigate = useNavigate();
   const handleEditProfile = () => {
-    navigate("/editprofile");
+    navigate("/profile/edit");
   }
 
   return (

@@ -27,7 +27,7 @@ const NewGame = (_props: Props) => {
   const navigate = useNavigate();
 
   const handleNewGame = () => {
-    navigate("/mygames");
+    navigate("/games/mygame");
   }
 
   return (

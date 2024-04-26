@@ -5,6 +5,7 @@ import {
 import { useState } from 'react';
 import pointSVG from "../assets/point.svg"
 import taskSVG from "../assets/task.svg"
+import avatar from '../assets/avatar.png'
 
 const StyledCardContend = styled(CardContent)(({theme})=> ({
   textAlign: 'center', 
@@ -60,7 +61,7 @@ const EditProfile = (_props: Props) => {
         <Box sx={{ display: 'flex', justifyContent: 'center', position: 'relative', top: '-40px' }}>
           <Avatar 
             alt="Profile Picture" 
-            src="/src/assets/avatar.png" 
+            src={avatar} 
             sx={{ width: "108px", height: "108px" }} 
           />
         </Box>

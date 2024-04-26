@@ -3,7 +3,7 @@ import Profile from './pages/Profile'
 import Layout from './components/layouts/Layout'
 import EditProfile from './pages/EditProfile'
 import NewGame from './pages/NewGame'
-import MyGame from './pages/MyGame'
+import MyGames from './pages/MyGames'
 import NewMatch from './pages/NewMatch'
 import Landing from './pages/auth/Landing'
 import SignUp from './pages/auth/SignUp'
@@ -19,10 +19,10 @@ function App() {
         {token ? (
           <Route element={<Layout />}>
             <Route path='/profile' element={<Profile />} />
-            <Route path='/editprofile' element={<EditProfile />} />
-            <Route path='/addnewgame' element={<NewGame />} />
-            <Route path='/mygames' element={<MyGame />} />
-            <Route path='/editornewmatch' element={<NewMatch />} />
+            <Route path='/profile/edit' element={<EditProfile />} />
+            <Route path='/games' element={<NewGame />} />
+            <Route path='/games/mygame' element={<MyGames />} />
+            <Route path='/games/newmatch' element={<NewMatch />} />
             <Route path='*' element={<Navigate to='/profile' />} />
           </Route> 
         ):(

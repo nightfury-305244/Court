@@ -1,6 +1,6 @@
 import { Grid, IconButton, styled } from '@mui/material';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import home from "../../assets/majesticons_home.svg"
 import chat from "../../assets/majesticons_chat.svg"
 import baseAdd from "../../assets/basil_add-solid.svg"
@@ -23,7 +23,8 @@ const StyledFooter = styled("div")(({theme}) => ({
         padding: 0,
       },
       ".select": {
-        height: "11px"
+        height: "11px",
+        opacity: 0
       }
     }
   }
@@ -32,17 +33,16 @@ const StyledFooter = styled("div")(({theme}) => ({
 
 const Footer = () => {
 
+  const location = useLocation().pathname.split('/')[1];
+
   const navigate = useNavigate();
-  const [showImage, setShowImage] = useState("");
 
   const handleProfile = () => {
     navigate("/profile")
-    setShowImage("profile")
   }
 
   const handleGames = () => {
-    navigate("/addnewgame")
-    setShowImage("newgame")
+    navigate("/games")
   }
 
   return (
@@ -55,23 +55,23 @@ const Footer = () => {
       >
         <Grid item>
           <IconButton><img src={home} alt='home' /></IconButton>
-          {showImage === "#" && <img className="select" src={Rectangle} alt='Rectangle' />}
+          <img className="select" style={{ opacity: location === "#" ? 1 : 0 }}  src={Rectangle} alt='Rectangle' />
         </Grid>
         <Grid item>
           <IconButton onClick={handleGames}><img src={tennisBell} alt='tennis-ball' /></IconButton>
-          {showImage === "newgame" && <img className="select" src={Rectangle} alt='Rectangle' />}
+          <img className="select" style={{ opacity: location === "games" ? 1 : 0 }} src={Rectangle} alt='Rectangle' />
         </Grid>
         <Grid item>
           <IconButton><img src={baseAdd} alt='plus' /></IconButton>
-          {showImage === "#" && <img className="select" src={Rectangle} alt='Rectangle' />}
+          <img className="select" style={{ opacity: location === "#" ? 1 : 0 }} src={Rectangle} alt='Rectangle' />
         </Grid>
         <Grid item>
           <IconButton onClick={handleProfile}><img src={chat} alt='chat' /></IconButton>
-          {showImage === "profile" && <img className="select" src={Rectangle} alt='Rectangle' />}
+          <img className="select" style={{ opacity: location === "profile" ? 1 : 0 }} src={Rectangle} alt='Rectangle' />
         </Grid>
         <Grid item>
           <IconButton><img src={solarChart} alt='chart' /></IconButton>
-          {showImage === "#" && <img className="select" src={Rectangle} alt='Rectangle' />}
+          <img className="select" style={{ opacity: location === "#" ? 1 : 0 }} src={Rectangle} alt='Rectangle' />
         </Grid>
       </Grid>
     </StyledFooter>
