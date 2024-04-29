@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
@@ -10,7 +9,6 @@ import { Container } from '@mui/material'
 import { theme } from './styles/theme.ts'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Container maxWidth="sm" >
@@ -18,5 +16,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </Container>
       </ThemeProvider>
     </Provider>
-  </React.StrictMode>,
 )

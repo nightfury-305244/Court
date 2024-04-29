@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import metaLogo from "../../assets/MetaLogo.png"
 import axios from 'axios';
 import { useAppDispatch } from '../../store/hook';
-import { setRegister } from '../../store/userSlice';
+import { setRegister } from '../../store/authSlice';
 
 const LandingPage = styled("div")(({theme})=>({
   width: "393px",

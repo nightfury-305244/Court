@@ -3,7 +3,7 @@ import 'react-international-phone/style.css';
 import { Link } from 'react-router-dom';
 import metaLogo from "../../assets/MetaLogo.png"
 import { useAppDispatch, useAppSelector } from '../../store/hook';
-import { setToken } from '../../store/authSlice';
+import { setRegister, setToken } from '../../store/authSlice';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -51,6 +51,7 @@ const Login = () => {
       setLoading(true);
       setSuccess(true);
       dispatch(setToken(res.data.body))
+      dispatch(setRegister({systemuser, password}))
 
     } catch (error) {
       console.log("error: ", error)
@@ -59,7 +60,7 @@ const Login = () => {
     }
   }
 
-  const user = useAppSelector(({user}) => user)
+  const user = useAppSelector(({auth}) => auth)
 
   return (
     <LandingPage>

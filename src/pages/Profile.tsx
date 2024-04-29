@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import dashboradImg from "../assets/dashboard.png"
 import avatar from "../assets/avatar.png"
 import avatarback from "../assets/avatar_border.svg"
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../store/hook'
+import { getProfile } from '../store/userSlice'
 
 const StyledProfile = styled("div")(({theme}) => ({
   ".dashboard": {
@@ -78,10 +81,21 @@ type Props = {}
 
 const Profile = (_props: Props) => {
 
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const handleEditProfile = () => {
     navigate("/profile/edit");
   }
+
+  const username = useAppSelector(({auth}) => auth.username)
+  console.log("username", username)
+
+  useEffect(()=>{
+    if(username != undefined) dispatch(getProfile(username))
+  },[username])
+
+  const user = useAppSelector(({user}) => user);
+  console.log("user: ", user);
 
   return (
     <StyledProfile>
@@ -91,42 +105,42 @@ const Profile = (_props: Props) => {
         <img className='avatar' src={avatar} alt='avatar' />
       </Box>
       <div className='container'>
-        <Typography variant='h1' align='center'>احسان نوروزی</Typography>
+        <Typography variant='h1' align='center'>{user.name}</Typography>
         <Typography className="step" align='center'>از پرو فایل خودتان را تکمیل کردید</Typography>
         <br />
         <Typography className="infotxt" align='center' sx={{}}>بهترین ها برای ماست!</Typography>
         <Box className="ntrp">
           <div>
-            <Typography className='title' align='center'>3.0</Typography>
+            <Typography className='title' align='center'>{user.ntrp}</Typography>
             <Typography className='content' variant='h3' align='center'>NTRP</Typography>
           </div>
           <hr className='vertiHr'/>
           <div>
-            <Typography className='title' align='center'>نفر  34</Typography>
+            <Typography className='title' align='center'>نفر  {user.followerCount}</Typography>
             <Typography className='content' variant='h3' align='center'>دنبال میکند</Typography>
           </div>
           <hr className='vertiHr' />
           <div>
-            <Typography className='title' align='center'>123 نفر</Typography>
+            <Typography className='title' align='center'> نفر {user.followingCount}</Typography>
             <Typography className='content' variant='h3' align='center'>دنبال کنندگان</Typography>
           </div>
         </Box>
         <hr className='horiHr'/>
         <Button variant='contained' color='primary' sx={{m: "8px"}} onClick={handleEditProfile}>ویرایش پروفایل</Button>
         <Box className="info">
-          <Typography variant='h3'>مازندران، ساری</Typography>
+          <Typography variant='h3'>{user.city}</Typography>
           <Typography>: منطقه</Typography>
         </Box>
         <Box className="info">
-          <Typography variant='h3'>حرفه ای</Typography>
+          <Typography variant='h3'>{user.bio}</Typography>
           <Typography>: سطــــح</Typography>
         </Box>
         <Box className="info">
-          <Typography variant='h3'>راست دست</Typography>
+          <Typography variant='h3'>{user.handSide} دست</Typography>
           <Typography>: دســـت</Typography>
         </Box>
         <Box className="info">
-          <Typography variant='h3'>185cm</Typography>
+          <Typography variant='h3'>{user.height}cm</Typography>
           <Typography>: قـــــــــــد</Typography>
         </Box>
       </div>
