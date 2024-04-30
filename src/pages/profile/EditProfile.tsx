@@ -143,7 +143,7 @@ const EditProfile = (_props: Props) => {
               max={6.0}
               defaultValue={user.ntrp}
             />
-            <Typography ml-2>
+            <Typography ml={2}>
             سطح
             <br/>
             {user.ntrp ? user.ntrp : rating}
