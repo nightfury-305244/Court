@@ -63,7 +63,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getProfile.fulfilled, (state, action) => action.payload);
+    builder.addCase(getProfile.fulfilled, (_state, action) => action.payload);
   },
 });
 

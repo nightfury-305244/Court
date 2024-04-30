@@ -1,6 +1,6 @@
 import { Box, Button, Card, Checkbox, FormControl, FormControlLabel, Grid, IconButton, InputAdornment, InputBase, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography, styled } from '@mui/material'
-import clock from "../assets/clock.svg"
-import search from "../assets/search.svg"
+import clock from "../../assets/clock.svg"
+import search from "../../assets/search.svg"
 
 const Content = styled(Card)(({theme})=>({
   color: theme.palette.info.main,

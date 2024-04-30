@@ -3,31 +3,41 @@ import {
   Avatar, styled, InputAdornment, TextField, Slider, Typography, Button 
 } from '@mui/material';
 import { useState } from 'react';
-import pointSVG from "../assets/point.svg"
-import taskSVG from "../assets/task.svg"
-import avatar from '../assets/avatar.png'
+import pointSVG from "../../assets/point.svg"
+import taskSVG from "../../assets/task.svg"
+import avatar from '../../assets/avatar.png'
+import { useAppSelector } from '../../store/hook';
+import { UserState } from './userSlice';
 
 const StyledCardContend = styled(CardContent)(({theme})=> ({
   textAlign: 'center', 
   marginTop: "-90px",
   ".field": {
+    marginTop: "25px",
     "label": {
-      right: "-10px",
-      top: "12px",
+      right: "-80px",
+      top: "-17px",
       left: "auto",
       color: theme.palette.secondary.light,
       fontWeight: "400",
       fontSize: "16px",
+      textAlign: "end",
+      width: "100%",
     },
     ".MuiInputBase-root": {
-      padding: '4.8px'
+      padding: '0',
+      margin : 0,
+      ".css-ittuaa-MuiInputAdornment-root": {
+        marginBottom: "15px",
+      },
+      "input": {
+        textAlign: "end",
+        color: theme.palette.info.main,
+        fontWeight: "600",
+        fontSize: "16px",
+        padding: 0
+      }
     },
-    "input": {
-      textAlign: "end",
-      color: theme.palette.info.main,
-      fontWeight: "600",
-      fontSize: "16px",
-    }
   },
   ".mSlider": {
     display: 'flex', 
@@ -55,6 +65,7 @@ const EditProfile = (_props: Props) => {
     setRating(newValue as number);
   };
 
+  const user: UserState = useAppSelector(({user}) => user);
   return (
     <Box sx={{ p: 2 }}>
       <Card sx={{ borderRadius: '8px', overflow: 'visible', boxShadow: 3}}>
@@ -71,7 +82,7 @@ const EditProfile = (_props: Props) => {
             id="input-with-icon-textfield"
             label="نام"
             fullWidth
-            value='احسان'
+            defaultValue={user.name}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -83,9 +94,9 @@ const EditProfile = (_props: Props) => {
           <TextField
             className='field'
             id="input-with-icon-textfield"
-            label="نام خانوادگی:"
+            label="نام خانوادگی"
             fullWidth
-            value='نوروزی'
+            defaultValue={user.name}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -99,7 +110,7 @@ const EditProfile = (_props: Props) => {
             id="input-with-icon-textfield"
             label="محل سکونت"
             fullWidth
-            value="مازندران، ساری"
+            defaultValue={user.city}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -130,12 +141,12 @@ const EditProfile = (_props: Props) => {
               onChange={handleSlider}
               aria-label="custom thumb label"
               max={6.0}
-              defaultValue={5.0}
+              defaultValue={user.ntrp}
             />
             <Typography ml-2>
             سطح
             <br/>
-            {rating}
+            {user.ntrp ? user.ntrp : rating}
             </Typography>
           </Box>
           <Typography sx={{color: "#606060", fontSize: "14px", lineHeight: "21.7px", textAlign: "right"}}>

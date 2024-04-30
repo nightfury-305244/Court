@@ -1,14 +1,14 @@
 import { Box, Button, Card, Chip, IconButton, InputBase, Paper, Typography, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import plusSVG from "../assets/+.svg"
-import pointSVG from "../assets/point.svg"
-import arrow from "../assets/fluent_send-32-filled.svg"
-import mdi from "../assets/mdi_like.svg"
-import vector from "../assets/Vector.svg"
-import HorizontalScrolling from '../components/component/HorizontalScrolling'
-import plusASVG from '../assets/Group_62.png'
-import avatar4 from '../assets/Ellipse4.png'
-import avatar5 from '../assets/Ellipse5.png'
+import plusSVG from "../../assets/+.svg"
+import pointSVG from "../../assets/point.svg"
+import arrow from "../../assets/fluent_send-32-filled.svg"
+import mdi from "../../assets/mdi_like.svg"
+import vector from "../../assets/Vector.svg"
+import HorizontalScrolling from '../../components/component/HorizontalScrolling'
+import plusASVG from '../../assets/Group_62.png'
+import avatar4 from '../../assets/Ellipse4.png'
+import avatar5 from '../../assets/Ellipse5.png'
 
 const Content = styled(Card)(()=>({
   borderRadius: "8px",

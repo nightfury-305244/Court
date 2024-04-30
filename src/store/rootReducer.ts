@@ -1,5 +1,5 @@
 import { combineReducers, Reducer } from '@reduxjs/toolkit';
-import user from './userSlice';
+import user from '../pages/profile/userSlice';
 import auth from './authSlice'
 
 export type RootState = ReturnType<typeof createReducer>;

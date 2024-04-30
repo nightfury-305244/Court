@@ -1,11 +1,11 @@
 import { Box, Button, Typography, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import dashboradImg from "../assets/dashboard.png"
-import avatar from "../assets/avatar.png"
-import avatarback from "../assets/avatar_border.svg"
+import dashboradImg from "../../assets/dashboard.png"
+import avatar from "../../assets/avatar.png"
+import avatarback from "../../assets/avatar_border.svg"
 import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../store/hook'
-import { getProfile } from '../store/userSlice'
+import { useAppDispatch, useAppSelector } from '../../store/hook'
+import { getProfile } from './userSlice'
 
 const StyledProfile = styled("div")(({theme}) => ({
   ".dashboard": {

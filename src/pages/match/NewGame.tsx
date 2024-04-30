@@ -1,6 +1,6 @@
 import { Box, Button, Typography, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import plusSvg from "../assets/+.svg"
+import plusSvg from "../../assets/+.svg"
 
 const GameTabStyle = styled(Box)(({theme})=> ({
   color: theme.palette.info.light,
