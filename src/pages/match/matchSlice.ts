@@ -50,7 +50,6 @@ export const getMatch = createAsyncThunk(
   async (id: any, { getState }) => {
     const state = getState() as any;
 
-    console.log("effect");
     try {
       const res = await axios.get(
         `https://api.binj.ir/api/match/${id}`,

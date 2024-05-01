@@ -5,19 +5,20 @@ export interface IAuthState {
   token: string;
   username: string;
   password: string;
+  id: string;
 }
 
 const initialState: IAuthState = {
   refreshToken:"",
   token: sessionStorage.getItem("access_token") as string,
-  username: sessionStorage.getItem("access_username") as string,
-  password: sessionStorage.getItem("access_password") as string,
+  username: "",
+  password: "",
+  id: sessionStorage.getItem("access_id") as string
 }
 
 export const logoutUser = createAsyncThunk('auth/logout', async (_, {dispatch}) => {
   sessionStorage.removeItem('access_token')
-  sessionStorage.removeItem('access_username')
-  sessionStorage.removeItem('access_password')
+  sessionStorage.removeItem('access_id')
 
   dispatch(userLoggedOut())
   window.location.reload()
@@ -40,9 +41,13 @@ const authSlice = createSlice({
       state.username = action.payload.systemuser;
       state.password = action.payload.password;
     },
+    setUserID: (state, action: PayloadAction<{id: string}>) => {
+      state.id = action.payload.id
+      sessionStorage.setItem('access_id', state.id)
+    },
   },
   extraReducers:() => {}
 })
 
-export const {userLoggedOut, setToken, setRegister} = authSlice.actions
+export const {userLoggedOut, setToken, setRegister, setUserID} = authSlice.actions
 export default authSlice.reducer

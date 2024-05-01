@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import PinInput from 'react-pin-input';
-import { Link, useNavigate } from 'react-router-dom';
 import metaLogo from "../../assets/MetaLogo.png"
 import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
@@ -62,7 +61,6 @@ const LandingPage = styled("div")(({theme})=>({
 
 
 const SignUp = () => {
-  const navigate = useNavigate();
   const [isSuccess, setSuccess] = useState(true);
   const [isLoading, setLoading] = useState(false);
   const [isNumber, setNumber] = useState(true);
@@ -89,7 +87,6 @@ const SignUp = () => {
     setSuccess(true)
     setLoading(true)
     try {
-      console.log("auth", auth)
       const res = await axios.post("https://api.binj.ir/api/users/auth/login", {systemuser: auth.username, password: auth.password})
       dispatch(setToken(res.data.body))
     } catch (error) {
@@ -135,11 +132,6 @@ const SignUp = () => {
       ):(
         <CircularProgress size={80}/>
       )}
-      
-      <Typography sx={{textAlign: "center", mt:"19px", color: "#606060"}}>
-            {"تذا كان لديك حساب بالفعل، يرجى تسجيل الدخول"}
-            <Link to="/auth/login" style={{ marginLeft: 1 }}>ثبت نام</Link>
-      </Typography>
     </LandingPage>
   )
 }

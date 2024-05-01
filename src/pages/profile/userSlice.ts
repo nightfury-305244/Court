@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { setUserID } from "../../store/authSlice";
 
 export interface UserState {
   bio: string;
@@ -27,15 +28,37 @@ const initialState: UserState = {
   username: "",
 };
 
+interface UserId {
+  _id: string;
+  image: string;
+  username: string;
+  name: string;
+}
+
+export const getId = createAsyncThunk(
+  "user/id",
+  async (username: any, {dispatch}) => {
+    try {
+      const res = await axios.get("https://api.binj.ir/api/users/search")
+      const data: UserId[] = res.data.message
+      const user:UserId | undefined = data.find(item=>item.username === username && item.username !== "")
+
+      if(user !== undefined) dispatch(setUserID({id: user._id}))
+
+    } catch (error) {
+      console.log("error: ", error)
+    }
+  }
+)
+
 export const getProfile = createAsyncThunk(
   "user/profile",
-  async (username: any, { getState }) => {
+  async (_, { getState }) => {
     const state = getState() as any;
 
-    console.log("effect");
     try {
       const res = await axios.get(
-        `https://api.binj.ir/api/users/profile/${username}`,
+        `https://api.binj.ir/api/users/profile/${state.auth.id}`,
         {
           headers: {
             Authorization: `${state.auth.token}`,

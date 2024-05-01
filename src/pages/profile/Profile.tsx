@@ -5,7 +5,7 @@ import avatar from "../../assets/avatar.png"
 import avatarback from "../../assets/avatar_border.svg"
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hook'
-import { getProfile } from './userSlice'
+import { getId, getProfile } from './userSlice'
 
 const StyledProfile = styled("div")(({theme}) => ({
   ".dashboard": {
@@ -86,16 +86,24 @@ const Profile = (_props: Props) => {
   const handleEditProfile = () => {
     navigate("/profile/edit");
   }
+  
+  const auth = useAppSelector(({auth}) => auth)
 
-  const username = useAppSelector(({auth}) => auth.username)
-  console.log("username", username)
+  useEffect(() => {
+    const fetchData = async () => {
+      if (auth.username !== undefined && auth.username !== "") {
+          await dispatch(getId(auth.username));
+      }
+      if(auth.id !== undefined && auth.id )
+        await dispatch(getProfile());
+      else if(auth.id === "")
+        navigate("/profile/edit");
+    };
 
-  useEffect(()=>{
-    if(username != undefined) dispatch(getProfile(username))
-  },[username])
+    fetchData();
+  },[auth])
 
   const user = useAppSelector(({user}) => user);
-  console.log("user: ", user);
 
   return (
     <StyledProfile>

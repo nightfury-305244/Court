@@ -7,7 +7,6 @@ import MyGames from './pages/match/MyGames'
 import NewMatch from './pages/match/NewMatch'
 import Landing from './pages/auth/Landing'
 import SignUp from './pages/auth/SignUp'
-import Login from './pages/auth/Login'
 import { useAppSelector } from './store/hook'
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
           </Route> 
         ):(
           <>
-            <Route path='/auth/login' element={<Login />}/>
             <Route path='/auth/signup' element={<SignUp />}/>
             <Route path='*' element={<Navigate to='/auth/signup' />} />
           </>
