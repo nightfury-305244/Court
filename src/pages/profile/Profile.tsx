@@ -1,4 +1,4 @@
-import { Box, Button, Typography, styled } from '@mui/material'
+import { Box, Button, Skeleton, Typography, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import dashboradImg from "../../assets/dashboard.png"
 import avatar from "../../assets/avatar.png"
@@ -113,42 +113,42 @@ const Profile = (_props: Props) => {
         <img className='avatar' src={avatar} alt='avatar' />
       </Box>
       <div className='container'>
-        <Typography variant='h1' align='center'>{user.name}</Typography>
+        <Typography variant='h1' align='center'>{user.name? user.name : <Skeleton animation="wave" />}</Typography>
         <Typography className="step" align='center'>از پرو فایل خودتان را تکمیل کردید</Typography>
         <br />
         <Typography className="infotxt" align='center' sx={{}}>بهترین ها برای ماست!</Typography>
         <Box className="ntrp">
           <div>
-            <Typography className='title' align='center'>{user.ntrp}</Typography>
+            <Typography className='title' align='center'>{user.ntrp? user.ntrp: <Skeleton animation="wave" />}</Typography>
             <Typography className='content' variant='h3' align='center'>NTRP</Typography>
           </div>
           <hr className='vertiHr'/>
           <div>
-            <Typography className='title' align='center'>نفر  {user.followerCount}</Typography>
+            <Typography className='title' align='center'>{user.name?`نفر ${user.followerCount}`:<Skeleton animation="wave" />}</Typography>
             <Typography className='content' variant='h3' align='center'>دنبال میکند</Typography>
           </div>
           <hr className='vertiHr' />
           <div>
-            <Typography className='title' align='center'> نفر {user.followingCount}</Typography>
+            <Typography className='title' align='center'>{user.name?`نفر ${user.followingCount}`:<Skeleton animation="wave" />}</Typography>
             <Typography className='content' variant='h3' align='center'>دنبال کنندگان</Typography>
           </div>
         </Box>
         <hr className='horiHr'/>
         <Button variant='contained' color='primary' sx={{m: "8px"}} onClick={handleEditProfile}>ویرایش پروفایل</Button>
         <Box className="info">
-          <Typography variant='h3'>{user.city}</Typography>
+          <Typography variant='h3'>{user.city?user.city:<Skeleton sx={{minWidth:"50px"}} animation="wave" />}</Typography>
           <Typography>: منطقه</Typography>
         </Box>
         <Box className="info">
-          <Typography variant='h3'>{user.bio}</Typography>
+          <Typography variant='h3'>{user.bio?user.bio:<Skeleton sx={{minWidth:"50px"}} animation="wave" />}</Typography>
           <Typography>: سطــــح</Typography>
         </Box>
         <Box className="info">
-          <Typography variant='h3'>{user.handSide} دست</Typography>
+          <Typography variant='h3'>{user.handSide?`${user.handSide}دست`:<Skeleton sx={{minWidth:"50px"}} animation="wave" />}</Typography>
           <Typography>: دســـت</Typography>
         </Box>
         <Box className="info">
-          <Typography variant='h3'>{user.height}cm</Typography>
+          <Typography variant='h3'>{user.name?`${user.height}cm`:<Skeleton sx={{minWidth:"50px"}} animation="wave" />}</Typography>
           <Typography>: قـــــــــــد</Typography>
         </Box>
       </div>

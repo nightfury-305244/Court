@@ -2,7 +2,7 @@ import {
   Box, Card, CardContent, 
   Avatar, styled, InputAdornment, TextField, Slider, Typography, Button 
 } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import pointSVG from "../../assets/point.svg"
 import taskSVG from "../../assets/task.svg"
 import avatar from '../../assets/avatar.png'
@@ -66,6 +66,10 @@ const EditProfile = (_props: Props) => {
   };
 
   const user: UserState = useAppSelector(({user}) => user);
+
+  useEffect(()=>{
+    setRating(user.ntrp);
+  },[])
   return (
     <Box sx={{ p: 2 }}>
       <Card sx={{ borderRadius: '8px', overflow: 'visible', boxShadow: 3}}>
@@ -146,7 +150,7 @@ const EditProfile = (_props: Props) => {
             <Typography ml={2}>
             سطح
             <br/>
-            {user.ntrp ? user.ntrp : rating}
+            {rating}
             </Typography>
           </Box>
           <Typography sx={{color: "#606060", fontSize: "14px", lineHeight: "21.7px", textAlign: "right"}}>
