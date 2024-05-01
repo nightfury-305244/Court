@@ -21,9 +21,14 @@ const Content = styled(Card)(({theme})=>({
 type Props = {}
 
 const NewMatch = (_props: Props) => {
+
+  const handleSubmit = () => {
+    
+  }
   return (
     <Box sx={{padding: "20px"}}>
       <Content>
+        <form>
         <Typography variant='h1'>ایجاد یک مسابقه جدید</Typography>
         <Box>
           <Typography>عنوان</Typography>
@@ -183,6 +188,7 @@ const NewMatch = (_props: Props) => {
           <OutlinedInput className='outlinedInput' fullWidth color='warning' minRows={3} multiline/>
         </Box>
         <Button fullWidth color='warning' variant='contained' sx={{mt: "42px"}}>انتشار رویداد</Button>
+        </form>
       </Content>
     </Box>
   )

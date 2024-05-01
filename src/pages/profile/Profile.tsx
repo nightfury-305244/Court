@@ -94,9 +94,10 @@ const Profile = (_props: Props) => {
       if (auth.username !== undefined && auth.username !== "") {
           await dispatch(getId(auth.username));
       }
+      console.log("auth", auth.id)
       if(auth.id !== undefined && auth.id )
         await dispatch(getProfile());
-      else if(auth.id === "")
+      else if(auth.id === null)
         navigate("/profile/edit");
     };
 

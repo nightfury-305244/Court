@@ -2,12 +2,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Profile from './pages/profile/Profile'
 import Layout from './components/layouts/Layout'
 import EditProfile from './pages/profile/EditProfile'
-import NewGame from './pages/match/NewGame'
-import MyGames from './pages/match/MyGames'
 import NewMatch from './pages/match/NewMatch'
 import Landing from './pages/auth/Landing'
 import SignUp from './pages/auth/SignUp'
 import { useAppSelector } from './store/hook'
+import Games from './pages/match/Games'
 
 function App() {
   const {token} = useAppSelector(({auth}) => auth)
@@ -19,8 +18,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path='/profile' element={<Profile />} />
             <Route path='/profile/edit' element={<EditProfile />} />
-            <Route path='/games' element={<NewGame />} />
-            <Route path='/games/mygame' element={<MyGames />} />
+            <Route path='/games' element={<Games />} />
             <Route path='/games/newmatch' element={<NewMatch />} />
             <Route path='*' element={<Navigate to='/profile' />} />
           </Route> 

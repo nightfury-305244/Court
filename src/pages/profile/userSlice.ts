@@ -43,6 +43,7 @@ export const getId = createAsyncThunk(
       const data: UserId[] = res.data.message
       const user:UserId | undefined = data.find(item=>item.username === username && item.username !== "")
 
+      console.log(user)
       if(user !== undefined) dispatch(setUserID({id: user._id}))
 
     } catch (error) {
