@@ -6,8 +6,8 @@ import PinInput from 'react-pin-input';
 import { Link, useNavigate } from 'react-router-dom';
 import metaLogo from "../../assets/MetaLogo.png"
 import axios from 'axios';
-import { useAppDispatch } from '../../store/hook';
-import { setRegister } from '../../store/authSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
+import { setRegister, setToken } from '../../store/authSlice';
 
 const LandingPage = styled("div")(({theme})=>({
   width: "393px",
@@ -69,6 +69,8 @@ const SignUp = () => {
   const [phone, setPhone] = useState("");
   const [_pin, setPin] = useState("");
   const dispatch = useAppDispatch();
+  
+  const auth = useAppSelector(({auth})=>auth);
 
   const HandleSendCode = async () => {
     setSuccess(true)
@@ -83,9 +85,19 @@ const SignUp = () => {
     }
     setLoading(false)
   }
-  const handleComplete = () => {
-    navigate("/auth/login")
-  };
+  const handleComplete = async () => {
+    setSuccess(true)
+    setLoading(true)
+    try {
+      console.log("auth", auth)
+      const res = await axios.post("https://api.binj.ir/api/users/auth/login", {systemuser: auth.username, password: auth.password})
+      dispatch(setToken(res.data.body))
+    } catch (error) {
+      console.log("error: ", error)
+      setSuccess(false);
+    }
+    setLoading(false)
+  }
   const handleAuth = () => {
     setNumber(true);
   }
@@ -109,6 +121,7 @@ const SignUp = () => {
           </div>
         ) : (
           <div className='pinCode'>
+            {!isSuccess && <Typography sx={{color: "red", mt: 2}}>فشل تسجيل الدخول. حاول مرة اخرى.</Typography>}
             <PinInput
               length={4}
               onChange={(pin)=>setPin(pin)}

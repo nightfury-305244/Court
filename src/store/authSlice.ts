@@ -39,8 +39,6 @@ const authSlice = createSlice({
     ) => {
       state.username = action.payload.systemuser;
       state.password = action.payload.password;
-      sessionStorage.setItem("access_username", state.username)
-      sessionStorage.setItem("access_password", state.password)
     },
   },
   extraReducers:() => {}
