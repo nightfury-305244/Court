@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { setUserID } from "../../store/authSlice";
 
@@ -13,6 +13,9 @@ export interface UserState {
   name: string;
   ntrp: number;
   username: string;
+  birth: string;
+  lastname: string;
+  about: string;
 }
 
 const initialState: UserState = {
@@ -26,6 +29,9 @@ const initialState: UserState = {
   name: "",
   ntrp: 0,
   username: "",
+  birth: "",
+  lastname: "",
+  about: ""
 };
 
 interface UserId {
@@ -44,7 +50,8 @@ export const getId = createAsyncThunk(
       const user:UserId | undefined = data.find(item=>item.username === username && item.username !== "")
 
       console.log(user)
-      if(user !== undefined) dispatch(setUserID({id: user._id}))
+      if(user) dispatch(setUserID({id: user._id}))
+      else dispatch(setUserID({id: "new_member"}))
 
     } catch (error) {
       console.log("error: ", error)
@@ -73,23 +80,25 @@ export const getProfile = createAsyncThunk(
   }
 );
 
-// export const updateUser = createAsyncThunk("user/update", async (data, {})=> {
-//   try {
-//     const res = await axios.put("https://api.binj.irusers/api/update", data);
-
-//   } catch (error) {
-
-//   }
-// })
-
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    updateUser: (state, action: PayloadAction<any>) => {
+      state.name = action.payload.name
+      state.lastname = action.payload.lastname
+      state.city = action.payload.city
+      state.ntrp = action.payload.ntrp
+      state.birth = action.payload.age
+      state.height = action.payload.height
+      state.handSide = action.payload.handSide
+      state.about = action.payload.about
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getProfile.fulfilled, (_state, action) => action.payload);
   },
 });
 
-export const { } = userSlice.actions;
+export const { updateUser } = userSlice.actions;
 export default userSlice.reducer;

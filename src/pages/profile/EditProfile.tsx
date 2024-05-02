@@ -1,13 +1,26 @@
 import { 
   Box, Card, CardContent, 
-  Avatar, styled, InputAdornment, TextField, Slider, Typography, Button 
-} from '@mui/material';
-import { useEffect, useState } from 'react';
+  Avatar, styled, InputAdornment, TextField, Slider, Typography, 
+  FormLabel,
+  FormControl,
+  RadioGroup,
+  Radio,
+  FormControlLabel,
+  Snackbar,
+  Alert} from '@mui/material';
+import React, { useState } from 'react';
 import pointSVG from "../../assets/point.svg"
 import taskSVG from "../../assets/task.svg"
 import avatar from '../../assets/avatar.png'
-import { useAppSelector } from '../../store/hook';
-import { UserState } from './userSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
+import { UserState, updateUser } from './userSlice';
+import { DatePicker } from '@mui/x-date-pickers';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import dayjs, { Dayjs } from 'dayjs';
+import { LoadingButton } from '@mui/lab';
+import axios from 'axios';
 
 const StyledCardContend = styled(CardContent)(({theme})=> ({
   textAlign: 'center', 
@@ -39,6 +52,36 @@ const StyledCardContend = styled(CardContent)(({theme})=> ({
       }
     },
   },
+  ".agePicker": {
+    width: "100%",
+    ".css-w5w8vr-MuiFormLabel-root-MuiInputLabel-root": {
+      left: "65px",
+      color: theme.palette.secondary.light,
+      fontWeight: "400",
+      fontSize: "16px",
+      textAlign: "end",
+      width: "100%",
+    },
+    ".css-9qpag0-MuiInputBase-root-MuiOutlinedInput-root":{
+      padding: "0px 0px 0px 12px",
+      ".css-152mnda-MuiInputBase-input-MuiOutlinedInput-input": {
+        padding: "16px 0 0 0",
+        color: "#606060",
+        fontWeight: "600",
+        fontSize: "16px",
+        lineHeight: "24.8px"
+      },
+      ".css-ittuaa-MuiInputAdornment-root":{
+        width: "fit-content",
+        "*": {padding:0}
+      },
+      ".css-1d3z3hw-MuiOutlinedInput-notchedOutline": {
+        border: "none",
+        borderBottom: "1px solid",
+        borderRadius: "0px",
+      }
+    }
+  },
   ".mSlider": {
     display: 'flex', 
     alignItems: "end",
@@ -47,29 +90,87 @@ const StyledCardContend = styled(CardContent)(({theme})=> ({
     },
     marginTop: "15px"
   },
-  ".btnGroup": {
-    textAlign: "end",
-    marginTop: "15px",
-    'div': {
+  ".hand": {
+    marginTop: "10px",
+    div: {
       display: "flex",
+      justifyContent: "space-around"
     }
-  },
+  }
 }))
 
 type Props = {}
 
 const EditProfile = (_props: Props) => {
-  const [rating, setRating] = useState(5.0);
+  const user: UserState = useAppSelector(({user}) => user);
+  const auth = useAppSelector(({auth})=>auth)
+  const dispatch = useAppDispatch();
+
+  const [rating, setRating] = useState(user.ntrp as number);
+  const [age, setAge] = React.useState<Dayjs|null>(dayjs(user.birth));
+  const [loading, setLoading] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [fetchStatus, setFetch] = React.useState<{
+    message: string
+    severity: "success" | "error"
+  }>({
+    message: "You Profile is updates successfully!",
+    severity: "success"
+  })
+
+  const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   const handleSlider = (_event: Event, newValue: number | number[]) => {
     setRating(newValue as number);
   };
 
-  const user: UserState = useAppSelector(({user}) => user);
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      lastname: formData.get("lastname"),
+      city: formData.get("address"),
+      ntrp: Number(formData.get('ntrp')),
+      age: age?.format('DD/MM/YYYY'),
+      height: Number(formData.get("height")),
+      handSide: formData.get("handSide"),
+      about: formData.get("about"),
+      username: auth.username
+    }
+    console.log(data);
+    setLoading(true)
+    try {
+      await axios.put("https://api.binj.irusers/api/update", data, 
+        {
+          headers: {
+            Authorization: `${auth.token}`,
+          }
+        }
+      );
+      dispatch(updateUser(data))
+      
+      setOpen(true);
+      setFetch({
+        message: "You Profile is updates successfully!",
+        severity: "success"
+      })
+      
+    } catch (error) {
+      setOpen(true);
+      setFetch({
+        message: "Update failed! Please try again later.",
+        severity: "error"
+      })
+    }
+    setLoading(false)
+  }
 
-  useEffect(()=>{
-    setRating(user.ntrp);
-  },[])
   return (
     <Box sx={{ p: 2 }}>
       <Card sx={{ borderRadius: '8px', overflow: 'visible', boxShadow: 3}}>
@@ -81,94 +182,143 @@ const EditProfile = (_props: Props) => {
           />
         </Box>
         <StyledCardContend>
-          <TextField
-            className='field'
-            id="input-with-icon-textfield"
-            label="نام"
-            fullWidth
-            defaultValue={user.name}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-          />
-          <TextField
-            className='field'
-            id="input-with-icon-textfield"
-            label="نام خانوادگی"
-            fullWidth
-            defaultValue={user.name}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-          />
-          <TextField
-            className='field'
-            id="input-with-icon-textfield"
-            label="محل سکونت"
-            fullWidth
-            defaultValue={user.city}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <img src={pointSVG} />
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-          />
-          <TextField
-            className='field'
-            id="input-with-icon-textfield"
-            label="سن"
-            fullWidth
-            value='76/10/02'
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <img src={taskSVG} />
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-          />
-          <Box className="mSlider" >
-            <Slider
-              valueLabelDisplay="auto"
-              onChange={handleSlider}
-              aria-label="custom thumb label"
-              max={6.0}
-              defaultValue={user.ntrp}
+          <Box component={"form"} onSubmit={handleSubmit}>
+            <TextField
+              className='field'
+              id="name-textfield"
+              name="name"
+              label="نام"
+              fullWidth
+              defaultValue={user.name}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                  </InputAdornment>
+                ),
+              }}
+              variant="standard"
             />
-            <Typography ml={2}>
-            سطح
-            <br/>
-            {rating}
-            </Typography>
-          </Box>
-          <Typography sx={{color: "#606060", fontSize: "14px", lineHeight: "21.7px", textAlign: "right"}}>
-          پیش بینی ضربات خوبی دارم، از پس ضربات قدرتمند بر میایم ،تمام زمین را به خوبی پوشش میدهم و ثدرت ضربه زنی و دقت سرویس زنی خوبی دارم.
-          </Typography>
-          <Box className="btnGroup">
-            <Typography sx={{color: "#828282"}}>انتخاب دست</Typography>
-            <Box>
-              <Button variant="outlined" color='warning' sx={{marginRight: "20px", color: "#A4A2A4"}} fullWidth>چپ دست</Button>
-              <Button variant='contained' fullWidth>راست دست</Button>
+            <TextField
+              className='field'
+              id="lastname-textfield"
+              label="نام خانوادگی"
+              name='lastname'
+              fullWidth
+              defaultValue={user.name}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                  </InputAdornment>
+                ),
+              }}
+              variant="standard"
+            />
+            <TextField
+              className='field'
+              id="address-textfield"
+              label="محل سکونت"
+              fullWidth
+              name='address'
+              defaultValue={user.city}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <img src={pointSVG} />
+                  </InputAdornment>
+                ),
+              }}
+              variant="standard"
+            />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={['DatePicker', 'DatePicker']}>
+                <DatePicker
+                  className='agePicker'
+                  label="سن"
+                  slots={{ openPickerIcon: ()=>(<img src={taskSVG} />) }}
+                  slotProps={{
+                    inputAdornment: {
+                      position: 'start'
+                    }
+                  }}
+                  value={age}
+                  onChange={(newValue) => setAge(newValue)}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
+            <TextField
+              className='field'
+              id="height-textfield"
+              label="ارتفاع"
+              name='height'
+              type='number'
+              fullWidth
+              defaultValue={user.height}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                  </InputAdornment>
+                ),
+              }}
+              variant="standard"
+            />
+            <Box className="mSlider" >
+              <Slider
+                valueLabelDisplay="auto"
+                onChange={handleSlider}
+                name='ntrp'
+                aria-label="custom thumb label"
+                max={6}
+                value={rating}
+              />
+              <Typography ml={2}>
+              سطح
+              <br/>
+              {rating}
+              </Typography>
             </Box>
-          </Box>
-          <Box className="btnGroup">
-            <Typography sx={{color: "#828282"}}>درباره من</Typography>
-            <TextField fullWidth multiline rows={2} />
+            <Typography sx={{color: "#606060", fontSize: "14px", lineHeight: "21.7px", textAlign: "right"}}>
+            پیش بینی ضربات خوبی دارم، از پس ضربات قدرتمند بر میایم ،تمام زمین را به خوبی پوشش میدهم و ثدرت ضربه زنی و دقت سرویس زنی خوبی دارم.
+            </Typography>
+            <FormControl fullWidth className='hand'>
+              <FormLabel id="demo-row-radio-buttons-group-label">انتخاب دست</FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="handSide"
+                defaultValue={user.handSide}
+              >
+                <FormControlLabel value="left" control={<Radio />} label="چپ دست" />
+                <FormControlLabel value="right" control={<Radio />} label="راست دست" />
+              </RadioGroup>
+            </FormControl>
+            <Box className="btnGroup">
+              <Typography sx={{color: "#828282"}}>درباره من</Typography>
+              <TextField fullWidth multiline rows={3} name='about' sx={{
+                ".css-1l8o1ga-MuiInputBase-root-MuiOutlinedInput-root": {
+                  padding: "5px"
+                }
+              }}/>
+            </Box>
+            <LoadingButton 
+              fullWidth sx={{mt: "10px"}} 
+              variant='contained' 
+              loading={loading}
+              type='submit'>
+                ارسال
+              </LoadingButton>
           </Box>
         </StyledCardContend>
       </Card>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+        <Alert
+          onClose={handleClose}
+          severity={fetchStatus.severity}
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {fetchStatus.message}
+        </Alert>
+      </Snackbar>
     </Box>
   )
 }

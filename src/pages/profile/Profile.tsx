@@ -91,13 +91,14 @@ const Profile = (_props: Props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (auth.username !== undefined && auth.username !== "") {
-          await dispatch(getId(auth.username));
-      }
-      console.log("auth", auth.id)
-      if(auth.id !== undefined && auth.id )
+      if(auth.id){
         await dispatch(getProfile());
-      else if(auth.id === null)
+        console.log("getProfile", auth.id)
+      }else if(auth.username){
+        await dispatch(getId(auth.username));
+        console.log("getId",auth.id)
+      }
+      if(auth.id === "new_member")
         navigate("/profile/edit");
     };
 

@@ -11,7 +11,7 @@ export interface IAuthState {
 const initialState: IAuthState = {
   refreshToken:"",
   token: sessionStorage.getItem("access_token") as string,
-  username: "",
+  username: sessionStorage.getItem('access_username') as string,
   password: "",
   id: sessionStorage.getItem("access_id") as string
 }
@@ -19,6 +19,7 @@ const initialState: IAuthState = {
 export const logoutUser = createAsyncThunk('auth/logout', async (_, {dispatch}) => {
   sessionStorage.removeItem('access_token')
   sessionStorage.removeItem('access_id')
+  sessionStorage.removeItem('access_username')
 
   dispatch(userLoggedOut())
   window.location.reload()
@@ -40,6 +41,7 @@ const authSlice = createSlice({
     ) => {
       state.username = action.payload.systemuser;
       state.password = action.payload.password;
+      sessionStorage.setItem("access_username", state.username)
     },
     setUserID: (state, action: PayloadAction<{id: string}>) => {
       state.id = action.payload.id
