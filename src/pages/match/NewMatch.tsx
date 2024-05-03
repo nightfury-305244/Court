@@ -1,6 +1,12 @@
-import { Box, Button, Card, Checkbox, FormControl, FormControlLabel, Grid, IconButton, InputAdornment, InputBase, InputLabel, MenuItem, OutlinedInput, Paper, Select, TextField, Typography, styled } from '@mui/material'
-import clock from "../../assets/clock.svg"
+import { Box, Button, Card, Checkbox, FormControl, FormControlLabel, Grid, IconButton, InputBase, InputLabel, MenuItem, OutlinedInput, Paper, Select, Typography, styled } from '@mui/material'
 import search from "../../assets/search.svg"
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo'
+import { DateTimeRangePicker } from '@mui/x-date-pickers-pro/DateTimeRangePicker/DateTimeRangePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import dayjs, { Dayjs } from 'dayjs'
+import React from 'react'
+import { DateRange } from '@mui/lab'
 
 const Content = styled(Card)(({theme})=>({
   "*": {color: theme.palette.info.main},
@@ -15,12 +21,33 @@ const Content = styled(Card)(({theme})=>({
     ".MuiSelect-outlined": {
       padding: "6px 32px 6px 10px",
     }
+  },
+  ".timepicker": {
+      display: "flex",
+      ".css-wb57ya-MuiFormControl-root-MuiTextField-root": {
+        width: "40%",
+        minWidth: "0"
+      },
+      "fieldset":{
+        borderColor: `${theme.palette.warning.main}!important`
+      },
+      ".css-w5w8vr-MuiFormLabel-root-MuiInputLabel-root.Mui-error": {
+        color: `${theme.palette.warning.main}!important`
+      },
+      "input": {
+        padding: "6px 10px",
+      }
   }
 }))
 
 type Props = {}
 
 const NewMatch = (_props: Props) => {
+
+  const [value, setValue] = React.useState<DateRange<Dayjs>>([
+    dayjs(''),
+    dayjs(''),
+  ]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); 
@@ -30,7 +57,7 @@ const NewMatch = (_props: Props) => {
       ntrp: 3,
       duration: 2,
       type: 4,
-      date: formData.get("time"),
+      date: `${value[0]?.format("YYYY-MM-DDTHH:mm")} - ${value[1]?.format("YYYY-MM-DDTHH:mm")}`,
       cost: formData.get("price"),
       city: "shahi",
       place: formData.get("place"),
@@ -66,43 +93,17 @@ const NewMatch = (_props: Props) => {
             </FormControl>
           </Box>
           <Box>
-            <Typography>زمان</Typography>
-            <OutlinedInput id="time" className='outlinedInput' fullWidth color='warning' />
-            <Box sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              mt: "4px"
-            }}>
-              <TextField
-                fullWidth
-                className='outlinedInput'
-                name="startTime"
-                sx={{mr: "43px"}}
-                placeholder='تا'
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <img src={clock} alt='clock' />
-                    </InputAdornment>
-                  ),
-                }}
-                variant="outlined"
-              />
-              <TextField
-                fullWidth
-                className='outlinedInput'
-                name="endTime"
-                placeholder='از'
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <img src={clock} alt='clock' />
-                    </InputAdornment>
-                  ),
-                }}
-                variant="outlined"
-              />
-            </Box>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={['DateTimeRangePicker']}>
+              <DemoItem label="زمان" component="DateTimeRangePicker">
+                <DateTimeRangePicker
+                  className='timepicker'
+                  value={value}
+                  onChange={(newValue) => setValue(newValue)}
+                />
+              </DemoItem>
+              </DemoContainer>
+            </LocalizationProvider>
           </Box>
           <Box sx={{
             display: "flex",

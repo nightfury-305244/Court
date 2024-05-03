@@ -47,12 +47,13 @@ const initialState: MatchState = {
 
 export const getMatch = createAsyncThunk(
   "match/getmatch",
-  async (id: any, { getState }) => {
+  async (_, { getState }) => {
     const state = getState() as any;
+    const userId = state.auth.id
 
     try {
       const res = await axios.get(
-        `https://api.binj.ir/api/match/${id}`,
+        `https://api.binj.ir/api/matches/${userId}`,
         {
           headers: {
             Authorization: `${state.auth.token}`,

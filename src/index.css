@@ -30,3 +30,11 @@ body {
   min-height: 100vh;
   text-align: end;
 }
+
+.css-1ncn8na-MuiDateRangeCalendar-root > div:first-child {
+  display: none;
+}
+
+.css-1akxyii-MuiButtonBase-root-MuiButton-root {
+  background-color: #3C638E!important;
+}
