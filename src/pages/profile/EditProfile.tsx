@@ -54,7 +54,7 @@ const StyledCardContend = styled(CardContent)(({theme})=> ({
   },
   ".agePicker": {
     width: "100%",
-    ".css-w5w8vr-MuiFormLabel-root-MuiInputLabel-root": {
+    "label": {
       left: "65px",
       color: theme.palette.secondary.light,
       fontWeight: "400",
@@ -62,20 +62,20 @@ const StyledCardContend = styled(CardContent)(({theme})=> ({
       textAlign: "end",
       width: "100%",
     },
-    ".css-9qpag0-MuiInputBase-root-MuiOutlinedInput-root":{
+    ".MuiInputBase-adornedEnd":{
       padding: "0px 0px 0px 12px",
-      ".css-152mnda-MuiInputBase-input-MuiOutlinedInput-input": {
+      ".MuiInputBase-inputAdornedEnd": {
         padding: "16px 0 0 0",
         color: "#606060",
         fontWeight: "600",
         fontSize: "16px",
         lineHeight: "24.8px"
       },
-      ".css-ittuaa-MuiInputAdornment-root":{
+      ".MuiInputAdornment-sizeMedium":{
         width: "fit-content",
         "*": {padding:0}
       },
-      ".css-1d3z3hw-MuiOutlinedInput-notchedOutline": {
+      "fieldset": {
         border: "none",
         borderBottom: "1px solid",
         borderRadius: "0px",
