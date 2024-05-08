@@ -294,7 +294,7 @@ const EditProfile = (_props: Props) => {
             <Box className="btnGroup">
               <Typography sx={{color: "#828282"}}>درباره من</Typography>
               <TextField fullWidth multiline rows={3} name='about' sx={{
-                ".css-1l8o1ga-MuiInputBase-root-MuiOutlinedInput-root": {
+                ".MuiInputBase-root": {
                   padding: "5px"
                 }
               }}/>
