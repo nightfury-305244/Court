@@ -8,6 +8,7 @@ import HorizontalScrolling from './HorizontalScrolling'
 import plusASVG from '../../assets/Group_62.png'
 import avatar4 from '../../assets/Ellipse4.png'
 import avatar5 from '../../assets/Ellipse5.png'
+import { MatchState } from '../../pages/match/matchSlice'
 
 const Content = styled(Card)(()=>({
   borderRadius: "8px",
@@ -60,18 +61,19 @@ const data = [
 ]
 
 type Props = {
-  handleNewMatch: any
+  handleNewMatch: any,
+  match: MatchState
 }
 
 const MyGameCard = (props: Props) => {
 
-  const {handleNewMatch} = props
+  const {handleNewMatch, match} = props
 
   return (
     <Content>
         <Box className="content">
           <Typography variant='h1'>
-            زمین بازی ویلا پارک
+            {match.subject}
           </Typography>
           <Chip sx={{height: "fit-content"}} color='info' label="توسط رضا نورانی و نیلو" />
         </Box>

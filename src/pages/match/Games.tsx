@@ -2,10 +2,12 @@ import { Box, Button, Tab, styled } from '@mui/material';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import React from 'react'
+import React, { useEffect } from 'react'
 import plusSvg from "../../assets/+.svg"
 import MyGameCard from '../../components/component/MyGameCard';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
+import { MatchState, getMatchByUserID } from './matchSlice';
 
 const Container = styled(Box)(({theme})=>({
   padding: "0 20px",
@@ -34,6 +36,7 @@ type Props = {}
 const Games = (_props: Props) => {
   const [value, setValue] = React.useState('1');
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -42,6 +45,12 @@ const Games = (_props: Props) => {
   const handleNewMatch = () => {
     navigate("/games/newmatch")
   }
+
+  useEffect(()=>{
+    dispatch(getMatchByUserID())
+  },[])
+
+  const matches:MatchState[] = useAppSelector(({match})=>match)
 
   return (
     <Container>
@@ -71,7 +80,9 @@ const Games = (_props: Props) => {
             sx={{marginTop: "12px"}}>
               افزودن بازی جدید 
           </Button>
-          <MyGameCard handleNewMatch={handleNewMatch}/>
+          {matches.map((match)=>(
+            <MyGameCard match={match} handleNewMatch={handleNewMatch}/>
+          ))}
         </TabPanel>
       </TabContext>
     </Container>

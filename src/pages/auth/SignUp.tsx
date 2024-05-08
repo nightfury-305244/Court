@@ -87,7 +87,7 @@ const SignUp = () => {
     setSuccess(true)
     setLoading(true)
     try {
-      const res = await axios.post("https://api.binj.ir/api/users/auth/login", {systemuser: auth.username, password: auth.password})
+      const res = await axios.post("https://api.binj.ir/api/users/auth/login", {"systemuser": auth.username, "password": auth.password})
       dispatch(setToken(res.data.body))
     } catch (error) {
       console.log("error: ", error)

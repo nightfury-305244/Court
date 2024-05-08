@@ -23,7 +23,7 @@ export interface MatchState {
   commentCounter: number
 }
 
-const initialState: MatchState = {
+const initialState: MatchState[] = [{
   _id: "",
   subject: "",
   name: "",
@@ -43,13 +43,13 @@ const initialState: MatchState = {
       image: ""
   },
   commentCounter: 0
-};
+}];
 
-export const getMatch = createAsyncThunk(
+export const getMatchByUserID = createAsyncThunk(
   "match/getmatch",
   async (_, { getState }) => {
     const state = getState() as any;
-    const userId = state.auth.id
+    const userId = "6638aa64431f374f896d0d89"
 
     try {
       const res = await axios.get(
@@ -72,7 +72,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getMatch.fulfilled, (_state, action) => action.payload.message);
+    builder.addCase(getMatchByUserID.fulfilled, (_state, action) => action.payload);
   },
 });
 

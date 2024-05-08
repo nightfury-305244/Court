@@ -146,7 +146,7 @@ const EditProfile = (_props: Props) => {
     console.log(data);
     setLoading(true)
     try {
-      await axios.put("https://api.binj.irusers/api/update", data, 
+      await axios.put("https://api.binj.ir/api/update", data, 
         {
           headers: {
             Authorization: `${auth.token}`,
