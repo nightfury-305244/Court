@@ -76,12 +76,13 @@ const Games = (_props: Props) => {
             fullWidth 
             variant='contained' 
             color='warning'
+            onClick={handleNewMatch}
             startIcon={<img src={plusSvg} alt='+'/>}
             sx={{marginTop: "12px"}}>
               افزودن بازی جدید 
           </Button>
-          {matches.map((match)=>(
-            <MyGameCard match={match} handleNewMatch={handleNewMatch}/>
+          {matches && matches.map((match, index)=>(
+            <MyGameCard key={index} match={match} />
           ))}
         </TabPanel>
       </TabContext>

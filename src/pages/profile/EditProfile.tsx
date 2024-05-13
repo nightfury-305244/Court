@@ -8,7 +8,7 @@ import {
   FormControlLabel,
   Snackbar,
   Alert} from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import pointSVG from "../../assets/point.svg"
 import taskSVG from "../../assets/task.svg"
 import avatar from '../../assets/avatar.png'
@@ -118,6 +118,30 @@ const EditProfile = (_props: Props) => {
     severity: "success"
   })
 
+  useEffect(()=>{
+    const updateUserName = async () => {
+      setLoading(true)
+      try {
+        await axios.put("https://api.binj.ir/api/username",
+          {
+            "username": auth.username
+          },
+          {
+            headers: {
+              Authorization: `${auth.token}`,
+            }
+          }
+        )
+      } catch (error) {
+        console.log();
+      }
+      
+      setLoading(false)
+    }
+
+    updateUserName();
+  },[]);
+
   const handleClose = (_event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
@@ -140,8 +164,7 @@ const EditProfile = (_props: Props) => {
       age: age?.format('DD/MM/YYYY'),
       height: Number(formData.get("height")),
       handSide: formData.get("handSide"),
-      about: formData.get("about"),
-      username: auth.username
+      about: formData.get("about")
     }
     console.log(data);
     setLoading(true)
@@ -230,7 +253,7 @@ const EditProfile = (_props: Props) => {
               variant="standard"
             />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DatePicker', 'DatePicker']}>
+              <DemoContainer components={['DatePicker']}>
                 <DatePicker
                   className='agePicker'
                   label="سن"

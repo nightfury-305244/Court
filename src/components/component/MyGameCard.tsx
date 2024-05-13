@@ -61,13 +61,12 @@ const data = [
 ]
 
 type Props = {
-  handleNewMatch: any,
   match: MatchState
 }
 
 const MyGameCard = (props: Props) => {
 
-  const {handleNewMatch, match} = props
+  const {match} = props
 
   return (
     <Content>
@@ -106,7 +105,7 @@ const MyGameCard = (props: Props) => {
           <Typography variant='h2'>بازیکن های اضافه شده:</Typography>
         </Box>
         <HorizontalScrolling data={data} />
-        <Button variant="contained" fullWidth startIcon={<img src={plusSVG} alt='+'/>} onClick={handleNewMatch} sx={{mt:"8px"}}>
+        <Button variant="contained" fullWidth startIcon={<img src={plusSVG} alt='+'/>} onClick={()=>{}} sx={{mt:"8px"}}>
            دنبال کردن    
         </Button>
         <Paper

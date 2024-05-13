@@ -91,6 +91,8 @@ const Profile = (_props: Props) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      if(auth.id === "new_member")
+        navigate("/profile/edit");
       if(auth.id){
         await dispatch(getProfile());
         console.log("getProfile", auth.id)
@@ -98,8 +100,6 @@ const Profile = (_props: Props) => {
         await dispatch(getId(auth.username));
         console.log("getId",auth.id)
       }
-      if(auth.id === "new_member")
-        navigate("/profile/edit");
     };
 
     fetchData();

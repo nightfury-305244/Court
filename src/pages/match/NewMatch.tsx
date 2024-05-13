@@ -1,12 +1,10 @@
 import { Box, Button, Card, Checkbox, FormControl, FormControlLabel, Grid, IconButton, InputBase, InputLabel, MenuItem, OutlinedInput, Paper, Select, Typography, styled } from '@mui/material'
 import search from "../../assets/search.svg"
-import { LocalizationProvider } from '@mui/x-date-pickers'
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo'
-import { DateTimeRangePicker } from '@mui/x-date-pickers-pro/DateTimeRangePicker/DateTimeRangePicker';
+import { DateField, LocalizationProvider } from '@mui/x-date-pickers'
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import dayjs, { Dayjs } from 'dayjs'
 import React from 'react'
-import { DateRange } from '@mui/lab'
+import { MultiInputTimeRangeField } from '@mui/x-date-pickers-pro';
 
 const Content = styled(Card)(({theme})=>({
   "*": {color: theme.palette.info.main},
@@ -22,32 +20,29 @@ const Content = styled(Card)(({theme})=>({
       padding: "6px 32px 6px 10px",
     }
   },
-  ".timepicker": {
-      display: "flex",
-      ".css-wb57ya-MuiFormControl-root-MuiTextField-root": {
-        width: "40%",
-        minWidth: "0"
-      },
-      "fieldset":{
-        borderColor: `${theme.palette.warning.main}!important`
-      },
-      ".css-w5w8vr-MuiFormLabel-root-MuiInputLabel-root.Mui-error": {
-        color: `${theme.palette.warning.main}!important`
-      },
-      "input": {
-        padding: "6px 10px",
+  ".timePicker": {
+    marginTop: "10px",
+    "input": {
+      padding: "6px 10px",
+    },
+    "fieldset": {
+      borderColor: "#FEBE40",
+      "legend": {
+        visibility: "hidden!important"
       }
+    },
+    ".MuiStack-root": {
+      padding: 0
+    },
+    ".MuiMultiInputTimeRangeField-root": {
+     marginTop: "4px"
+    }
   }
 }))
 
 type Props = {}
 
 const NewMatch = (_props: Props) => {
-
-  const [value, setValue] = React.useState<DateRange<Dayjs>>([
-    dayjs(''),
-    dayjs(''),
-  ]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); 
@@ -57,7 +52,7 @@ const NewMatch = (_props: Props) => {
       ntrp: 3,
       duration: 2,
       type: 4,
-      date: `${value[0]?.format("YYYY-MM-DDTHH:mm")} - ${value[1]?.format("YYYY-MM-DDTHH:mm")}`,
+      date: "",
       cost: formData.get("price"),
       city: "shahi",
       place: formData.get("place"),
@@ -74,7 +69,7 @@ const NewMatch = (_props: Props) => {
             <Typography>عنوان</Typography>
             <OutlinedInput name="title" className='outlinedInput' fullWidth color='warning' />
           </Box>
-          <Box>
+          <Box sx={{mt:"10px"}}>
             <Typography>سطح</Typography>
             <FormControl fullWidth className='outlinedInput'>
               <InputLabel id="level-label"></InputLabel>
@@ -92,23 +87,21 @@ const NewMatch = (_props: Props) => {
               </Select>
             </FormControl>
           </Box>
-          <Box>
+          <Box className="timePicker">
+            <Typography>زمان</Typography>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DateTimeRangePicker']}>
-              <DemoItem label="زمان" component="DateTimeRangePicker">
-                <DateTimeRangePicker
-                  className='timepicker'
-                  value={value}
-                  onChange={(newValue) => setValue(newValue)}
+              <DemoContainer components={['DateField', 'MultiInputTimeRangeField']}>
+                <DateField />
+                <MultiInputTimeRangeField
+                  slotProps={{}}
                 />
-              </DemoItem>
               </DemoContainer>
             </LocalizationProvider>
           </Box>
           <Box sx={{
             display: "flex",
             justifyContent: "space-between",
-            mt: "4px"
+            mt: "10px"
           }}>
             <Box sx={{width: "100%", mr:"43px"}}>
               <Typography>حداکثر بازیکن</Typography>
