@@ -1,13 +1,5 @@
-import { 
-  Box, Card, CardContent, 
-  Avatar, styled, InputAdornment, TextField, Slider, Typography, 
-  FormLabel,
-  FormControl,
-  RadioGroup,
-  Radio,
-  FormControlLabel,
-  Snackbar,
-  Alert} from '@mui/material';
+import { Box, Card, CardContent, Avatar, styled, InputAdornment, TextField, Slider, Typography, 
+  FormLabel, FormControl, RadioGroup, Radio, FormControlLabel, Snackbar, Alert} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { UserState, updateUser } from './userSlice';
@@ -37,7 +29,7 @@ const StyledCardContend = styled(CardContent)(({theme})=> ({
     ".MuiInputBase-root": {
       padding: '0',
       margin : 0,
-      ".css-ittuaa-MuiInputAdornment-root": {
+      ".MuiInputAdornment-sizeMedium": {
         marginBottom: "15px",
       },
       "input": {
