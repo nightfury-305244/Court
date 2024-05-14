@@ -1,11 +1,5 @@
 import { Grid, IconButton, styled } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import home from "../../assets/majesticons_home.svg"
-import chat from "../../assets/majesticons_chat.svg"
-import baseAdd from "../../assets/basil_add-solid.svg"
-import tennisBell from "../../assets/tennis-ball_1.svg"
-import solarChart from "../../assets/solar_chart-bold.svg"
-import Rectangle from "../../assets/Rectangle.svg"
 
 const StyledFooter = styled("div")(({theme}) => ({
   padding: "2px 19px 22px 19px",
@@ -53,24 +47,24 @@ const Footer = () => {
         alignItems="center"
       >
         <Grid item>
-          <IconButton><img src={home} alt='home' /></IconButton>
-          <img className="select" style={{ opacity: location === "#" ? 1 : 0 }}  src={Rectangle} alt='Rectangle' />
+          <IconButton><img src="/images/majesticons_home.svg" alt='home' /></IconButton>
+          <img className="select" style={{ opacity: location === "#" ? 1 : 0 }}  src="/images/Rectangle.svg" alt='Rectangle' />
         </Grid>
         <Grid item>
-          <IconButton onClick={handleGames}><img src={tennisBell} alt='tennis-ball' /></IconButton>
-          <img className="select" style={{ opacity: location === "games" ? 1 : 0 }} src={Rectangle} alt='Rectangle' />
+          <IconButton onClick={handleGames}><img src="/images/tennis-ball_1.svg" alt='tennis-ball' /></IconButton>
+          <img className="select" style={{ opacity: location === "games" ? 1 : 0 }} src="/images/Rectangle.svg" alt='Rectangle' />
         </Grid>
         <Grid item>
-          <IconButton><img src={baseAdd} alt='plus' /></IconButton>
-          <img className="select" style={{ opacity: location === "#" ? 1 : 0 }} src={Rectangle} alt='Rectangle' />
+          <IconButton><img src="/images/basil_add-solid.svg" alt='plus' /></IconButton>
+          <img className="select" style={{ opacity: location === "#" ? 1 : 0 }} src="/images/Rectangle.svg" alt='Rectangle' />
         </Grid>
         <Grid item>
-          <IconButton onClick={handleProfile}><img src={chat} alt='chat' /></IconButton>
-          <img className="select" style={{ opacity: location === "profile" ? 1 : 0 }} src={Rectangle} alt='Rectangle' />
+          <IconButton onClick={handleProfile}><img src="/images/majesticons_chat.svg" alt='chat' /></IconButton>
+          <img className="select" style={{ opacity: location === "profile" ? 1 : 0 }} src="/images/Rectangle.svg" alt='Rectangle' />
         </Grid>
         <Grid item>
-          <IconButton><img src={solarChart} alt='chart' /></IconButton>
-          <img className="select" style={{ opacity: location === "#" ? 1 : 0 }} src={Rectangle} alt='Rectangle' />
+          <IconButton><img src="/images/solar_chart-bold.svg" alt='chart' /></IconButton>
+          <img className="select" style={{ opacity: location === "#" ? 1 : 0 }} src="/images/Rectangle.svg" alt='Rectangle' />
         </Grid>
       </Grid>
     </StyledFooter>

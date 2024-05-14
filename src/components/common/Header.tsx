@@ -1,6 +1,4 @@
 import { IconButton, Menu, MenuItem, styled } from '@mui/material'
-import bell from "../../assets/bell.svg"
-import avatar from "../../assets/avatar.png"
 import React from 'react';
 import { useAppDispatch } from '../../store/hook';
 import { logoutUser } from '../../store/authSlice';
@@ -45,10 +43,10 @@ const Header = () => {
     <StyledHeader>
       <div>
         <IconButton>
-          <img className='bell' src={bell} alt='notification' />
+          <img className='bell' src="/images/bell.svg" alt='notification' />
         </IconButton>
         <IconButton onClick={handleClick}>
-          <img className='avatar' src={avatar} alt='notification' />
+          <img className='avatar' src="/images/avatar.png" alt='notification' />
         </IconButton>
         <Menu
         id="basic-menu"
