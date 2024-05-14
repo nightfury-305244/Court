@@ -10,12 +10,12 @@ import { MatchState, getMatchByUserID } from './matchSlice';
 
 const Container = styled(Box)(({theme})=>({
   padding: "0 20px",
-  ".css-dv5jyh-MuiTabs-root":{
+  ".MuiTabs-root":{
     minHeight: "10px"
   },
-  ".css-heg063-MuiTabs-flexContainer": {
+  ".MuiTabs-flexContainer": {
     display: "flex",
-    ".css-1cspin7-MuiButtonBase-root-MuiTab-root": {
+    ".MuiTab-textColorPrimary": {
       borderBottom: "1px solid", 
       borderColor: theme.palette.info.light,
       flexBasis: 0,
