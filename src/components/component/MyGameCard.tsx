@@ -1,13 +1,5 @@
 import { Box, Button, Card, Chip, IconButton, InputBase, Paper, Typography, styled } from '@mui/material'
-import plusSVG from "../../assets/+.svg"
-import pointSVG from "../../assets/point.svg"
-import arrow from "../../assets/fluent_send-32-filled.svg"
-import mdi from "../../assets/mdi_like.svg"
-import vector from "../../assets/Vector.svg"
 import HorizontalScrolling from './HorizontalScrolling'
-import plusASVG from '../../assets/Group_62.png'
-import avatar4 from '../../assets/Ellipse4.png'
-import avatar5 from '../../assets/Ellipse5.png'
 import { MatchState } from '../../pages/match/matchSlice'
 
 const Content = styled(Card)(()=>({
@@ -43,19 +35,19 @@ const Content = styled(Card)(()=>({
 
 const data = [
   {
-    url: plusASVG,
+    url: "/images/Group_62.png",
     name: ""
   },
   {
-    url: plusASVG,
+    url: "/images/Group_62.png",
     name: ""
   },
   {
-    url: avatar5,
+    url: "/images/Ellipse5.png",
     name: "رضا نورانی"
   },
   {
-    url: avatar4,
+    url: "/images/Ellipse4.png",
     name: "نیلو"
   },
 ]
@@ -79,19 +71,19 @@ const MyGameCard = (props: Props) => {
         <Box sx={{marginTop: "8px"}}>
           <Box className="itemView">
             <Typography>سشنبه 13/09</Typography> <Typography>14:00-13:00</Typography>
-            <img src={pointSVG} alt="point"/>
+            <img src="/images/point.svg" alt="point"/>
           </Box>
           <Box className="itemView">
             <Typography>قائشمهر،خیابان تهران،تلار 10</Typography>
-            <img src={pointSVG} alt="point"/>
+            <img src="/images/point.svg" alt="point"/>
           </Box>
           <Box className="itemView">
             <Typography>زمین را رزرو کردم</Typography>
-            <img src={pointSVG} alt="point"/>
+            <img src="/images/point.svg" alt="point"/>
           </Box>
           <Box className="itemView">
             <Typography>رایگان</Typography>
-            <img src={pointSVG} alt="point"/>
+            <img src="/images/point.svg" alt="point"/>
           </Box>
         </Box>
         <Box className="itemView" sx={{marginTop: "8px"}}>
@@ -105,7 +97,7 @@ const MyGameCard = (props: Props) => {
           <Typography variant='h2'>بازیکن های اضافه شده:</Typography>
         </Box>
         <HorizontalScrolling data={data} />
-        <Button variant="contained" fullWidth startIcon={<img src={plusSVG} alt='+'/>} onClick={()=>{}} sx={{mt:"8px"}}>
+        <Button variant="contained" fullWidth startIcon={<img src="/images/+.svg" alt='+'/>} onClick={()=>{}} sx={{mt:"8px"}}>
            دنبال کردن    
         </Button>
         <Paper
@@ -118,7 +110,7 @@ const MyGameCard = (props: Props) => {
             inputProps={{ 'aria-label': 'نظر خود را بنویسید' }}
           />
           <IconButton color="primary" sx={{ m: '2.5px 8.5px', p: 0 }} aria-label="directions">
-            <img src={arrow} alt='send'/>
+            <img src="/images/fluent_send-32-filled.svg" alt='send'/>
           </IconButton>
         </Paper>
         <Box sx={{
@@ -129,10 +121,10 @@ const MyGameCard = (props: Props) => {
           mt: "8px"
         }}>
           <Box sx={{display: 'flex', flexDirection: "row", p: "7px 0", alignItems: "center"}}>
-            <img src={mdi} alt='mdi_like'/>
+            <img src="/images/mdi_like.svg" alt='mdi_like'/>
             <Typography>12</Typography>
           </Box>
-          <img src={vector} alt='Vector'/>
+          <img src="/images/Vector.svg" alt='Vector'/>
         </Box>
       </Content>
   )

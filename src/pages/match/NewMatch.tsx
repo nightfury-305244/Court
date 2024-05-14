@@ -1,5 +1,4 @@
 import { Box, Button, Card, Checkbox, FormControl, FormControlLabel, Grid, IconButton, InputBase, InputLabel, MenuItem, OutlinedInput, Paper, Select, Typography, styled } from '@mui/material'
-import search from "../../assets/search.svg"
 import { DateField, LocalizationProvider } from '@mui/x-date-pickers'
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -173,7 +172,7 @@ const NewMatch = (_props: Props) => {
                 inputProps={{ 'aria-label': 'نام زمین خود را وارد کنید...' }}
               />
               <IconButton color="primary" sx={{ p: '2.5px 8.5px' }} aria-label="directions">
-                <img src={search} alt='search'/>
+                <img src="/images/search.svg" alt='search'/>
               </IconButton>
             </Paper>
           </Box>

@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { PhoneInput } from 'react-international-phone';
 import 'react-international-phone/style.css';
 import PinInput from 'react-pin-input';
-import metaLogo from "../../assets/MetaLogo.png"
 import axios from 'axios';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { setRegister, setToken } from '../../store/authSlice';
@@ -102,7 +101,7 @@ const SignUp = () => {
   return (
     <LandingPage>
       <Box className="logo">
-        <img src={metaLogo} alt='meta logo' />
+        <img src="/images/MetaLogo.png" alt='meta logo' />
       </Box>
       {!isLoading ? (
         isNumber ? (

@@ -3,7 +3,6 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import React, { useEffect } from 'react'
-import plusSvg from "../../assets/+.svg"
 import MyGameCard from '../../components/component/MyGameCard';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
@@ -66,7 +65,7 @@ const Games = (_props: Props) => {
             fullWidth 
             variant='contained' 
             color='warning'
-            startIcon={<img src={plusSvg} alt='+'/>}
+            startIcon={<img src="/images/+.svg" alt='+'/>}
             sx={{marginTop: "12px"}}>
               افزودن بازی جدید 
           </Button>
@@ -77,7 +76,7 @@ const Games = (_props: Props) => {
             variant='contained' 
             color='warning'
             onClick={handleNewMatch}
-            startIcon={<img src={plusSvg} alt='+'/>}
+            startIcon={<img src="/images/+.svg" alt='+'/>}
             sx={{marginTop: "12px"}}>
               افزودن بازی جدید 
           </Button>

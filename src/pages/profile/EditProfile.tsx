@@ -9,9 +9,6 @@ import {
   Snackbar,
   Alert} from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import pointSVG from "../../assets/point.svg"
-import taskSVG from "../../assets/task.svg"
-import avatar from '../../assets/avatar.png'
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { UserState, updateUser } from './userSlice';
 import { DatePicker } from '@mui/x-date-pickers';
@@ -200,7 +197,7 @@ const EditProfile = (_props: Props) => {
         <Box sx={{ display: 'flex', justifyContent: 'center', position: 'relative', top: '-60px' }}>
           <Avatar 
             alt="Profile Picture" 
-            src={avatar} 
+            src="/images/avatar.png"
             sx={{ width: "108px", height: "108px" }} 
           />
         </Box>
@@ -246,7 +243,7 @@ const EditProfile = (_props: Props) => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <img src={pointSVG} />
+                    <img src="/images/point.svg" />
                   </InputAdornment>
                 ),
               }}
@@ -257,7 +254,7 @@ const EditProfile = (_props: Props) => {
                 <DatePicker
                   className='agePicker'
                   label="سن"
-                  slots={{ openPickerIcon: ()=>(<img src={taskSVG} />) }}
+                  slots={{ openPickerIcon: ()=>(<img src="/images/task.svg" />) }}
                   slotProps={{
                     inputAdornment: {
                       position: 'start'

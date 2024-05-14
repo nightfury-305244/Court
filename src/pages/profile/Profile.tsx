@@ -1,8 +1,5 @@
 import { Box, Button, Skeleton, Typography, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import dashboradImg from "../../assets/dashboard.png"
-import avatar from "../../assets/avatar.png"
-import avatarback from "../../assets/avatar_border.svg"
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hook'
 import { getId, getProfile } from './userSlice'
@@ -110,9 +107,9 @@ const Profile = (_props: Props) => {
   return (
     <StyledProfile>
       <Box className="dashboard">
-        <img src={dashboradImg} alt='dashboard'/>
-        <img className='avatarBorder' src={avatarback} alt='avatar_border' />
-        <img className='avatar' src={avatar} alt='avatar' />
+        <img src="/images/dashboard.png" alt='dashboard'/>
+        <img className='avatarBorder' src="/images/avatar_border.svg" alt='avatar_border' />
+        <img className='avatar' src="/images/avatar.png" alt='avatar' />
       </Box>
       <div className='container'>
         <Typography variant='h1' align='center'>{user.name? user.name : <Skeleton animation="wave" />}</Typography>
